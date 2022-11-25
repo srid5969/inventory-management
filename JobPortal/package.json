@@ -1,0 +1,24 @@
+{
+  "name": "jobportal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://sridhar073:ATBBbEgvkumqSN25LZFHS7AVVXes168F6C10@bitbucket.org/innovixtech-admin/innovix_web_backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/innovixtech-admin/innovix_web_backend/issues"
+  },
+  "homepage": "https://bitbucket.org/innovixtech-admin/innovix_web_backend#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3"
+  }
+}
