@@ -1,13 +1,33 @@
 import { Schema, model } from "mongoose";
-interface IUser {
-  id: number;
+
+export interface IUser {
+  id: any;
   username: string;
   password: string;
+  role: string;
 }
-export const userSchema = new Schema<IUser>({
-  id: { required: false, unique: true },
-  username: { required: true, unique: true },
-  password: { required: true, unique: true },
-});
+export const userSchema: Schema = new Schema<IUser>(
+  {
+    id: { type:Schema.Types.ObjectId,required: false, unique: true, index: true },
+    username: { type:String,required: true, unique: true },
+    password: { type:String,required: true, unique: true, select: false },
+    role: {
+      enum: {
+        values: ["Admin"],
+      },
+    },
+  },
+  {
+    versionKey: false,
+    autoIndex: false,
+    autoCreate: false,
+  }
+);
+
+userSchema.methods.setPassword = function (password: string) {};
+
+userSchema.methods.validPassword = function (password: any) {
+  return "this.hash === hash";
+};
 const User = model<IUser>("users", userSchema);
 export default User;

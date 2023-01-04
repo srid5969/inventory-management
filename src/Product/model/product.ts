@@ -6,7 +6,6 @@ export interface IProduct extends Document {
   brand: string;
   uniqueId: string;
   sku: any;
-  unit: any;
   quantity: number;
   description: string;
   tax: any;
@@ -24,7 +23,6 @@ export const productSchema: Schema = new Schema<IProduct>(
     brand: { type: String },
     uniqueId: { type: String },
     sku: { type: String },
-    unit: { type: String },
     quantity: { type: Number },
     description: { type: String },
     tax: { type: Schema.Types.Mixed },
@@ -40,14 +38,17 @@ export const productSchema: Schema = new Schema<IProduct>(
     autoCreate: false,
   }
 );
-
-const Product = model<IProduct>("products", productSchema);
+productSchema.statics.findAllMethod =
+  async function findAllMethod(): Promise<IProduct[]> {
+    return await mongoose.model("products").find();
+  };
 productSchema.methods.saveProductMethod = async (
   data: IProduct
 ): Promise<IProduct> => {
   return await Product.create(data);
 };
-productSchema.methods.findAllMethod = async () => {
-  return await Product.find();
-};
+
+const Product = model<IProduct>("products", productSchema);
+
+// data.findAllMethod()
 export default Product;
