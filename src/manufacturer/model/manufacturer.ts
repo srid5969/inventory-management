@@ -8,7 +8,7 @@ export interface IManufacturer {
   email: string;
   website: string;
   establishment: number;
-  brand: string;
+  brand: string[];
   createDate: any;
 }
 export const manufacturerSchema: Schema = new Schema<IManufacturer>(
@@ -26,7 +26,7 @@ export const manufacturerSchema: Schema = new Schema<IManufacturer>(
     email: { required: false, type: String },
     website: { required: false, type: String },
     establishment: { required: false, type: Number },
-    brand: [{ required: false, type: Schema.Types.ObjectId, ref: "brands" }],
+    brand: [{ required: false, type: Schema.Types.Mixed, ref: "brands" }],
     createDate: { type: Date, default: Date.now() },
   },
   {

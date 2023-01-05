@@ -1,4 +1,4 @@
 const mongoString =
-  "mongodb+srv://gowri7gs:gowrishankar@cluster1.h9qo503.mongodb.net/sri_demo?retryWrites=true&w=majority";
+  "mongodb+srv://british-empire:sri@british-empire.wcsq6jq.mongodb.net/sample-Inventory-System-Management?retryWrites=true&w=majority";
 
 export default  mongoString ;

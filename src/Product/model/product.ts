@@ -1,36 +1,37 @@
 import mongoose, { Schema, model, Document } from "mongoose";
 export interface IProduct extends Document {
+  _id:object;
   id: number;
   productName: string;
-  category: string;
-  brand: string;
+  category: any;
+  brand: any;
   uniqueId: string;
   sku: any;
-  quantity: number;
   description: string;
-  tax: any;
-  discountType: any;
-  price: number;
   status: string;
   productImage: any;
   barCode: any;
+  createDate: any;
 }
 export const productSchema: Schema = new Schema<IProduct>(
   {
-    id: { required: false, unique: true, index: true },
-    productName: { type: String },
-    category: { type: String },
-    brand: { type: String },
-    uniqueId: { type: String },
-    sku: { type: String },
-    quantity: { type: Number },
+    id: {
+      type: Schema.Types.Mixed,
+      required: false,
+      unique: true,
+      index: true,
+    },
+    productName: { type: String, required: true },
+    category: { required: false, type: Schema.Types.Mixed, ref: "categories" },
+    brand: { required: false, type: Schema.Types.Mixed, ref: "brands" },
+    uniqueId: { type: String, required: true },
+    sku: { type: String, required: true },
     description: { type: String },
-    tax: { type: Schema.Types.Mixed },
-    discountType: { type: Schema.Types.Mixed },
-    price: { type: Number },
+
     status: { type: Schema.Types.String },
-    productImage: {},
-    barCode: { type: mongoose.Types.ObjectId },
+    productImage: { type: Schema.Types.Mixed, required: false },
+    barCode: { type: mongoose.Types.ObjectId, required: false },
+    createDate: { type: Date, default: Date.now(), select: false },
   },
   {
     versionKey: false,
@@ -38,10 +39,11 @@ export const productSchema: Schema = new Schema<IProduct>(
     autoCreate: false,
   }
 );
-productSchema.statics.findAllMethod =
-  async function findAllMethod(): Promise<IProduct[]> {
-    return await mongoose.model("products").find();
-  };
+productSchema.statics.findAllMethod = async function findAllMethod(): Promise<
+  IProduct[]
+> {
+  return await mongoose.model("products").find();
+};
 productSchema.methods.saveProductMethod = async (
   data: IProduct
 ): Promise<IProduct> => {
@@ -50,5 +52,4 @@ productSchema.methods.saveProductMethod = async (
 
 const Product = model<IProduct>("products", productSchema);
 
-// data.findAllMethod()
 export default Product;
