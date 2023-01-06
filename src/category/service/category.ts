@@ -1,28 +1,29 @@
-import brands, { IBrand } from "../model/brands";
+import category ,{ICategory}from "../model/category";
 
-export function listAllCategory(): Promise<IBrand[]> {
-  return new Promise<IBrand[]>(async (resolve, reject) => {
+
+export function listAllCategory(): Promise<ICategory[]> {
+  return new Promise<ICategory[]>(async (resolve, reject) => {
     try {
-      const data = await brands.find();
+      const data = await category.find({},{"id":"$_id",_id:0,categoryDescription:1,categoryName:1,categoryCode:1});
       resolve(data);
     } catch (error) {
       reject(error);
     }
   });
 }
-export function addBrand(data: IBrand): Promise<any> {
+export function addCategory(data: ICategory): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await brands.create(data));
+      resolve(await category.create(data));
     } catch (error) {
       reject(error);
     }
   });
 }
-export function editById(id: any, data: IBrand): Promise<any> {
+export function editById(id: any, data: ICategory): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await brands.findOneAndUpdate({ id }, { data }));
+      resolve(await category.findOneAndUpdate({ id }, { data }));
     } catch (error) {
       reject(error);
     }
@@ -31,7 +32,7 @@ export function editById(id: any, data: IBrand): Promise<any> {
 export function deleteById(id: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await brands.deleteOne({ id }));
+      resolve(await category.deleteOne({ id }));
     } catch (error) {
       reject(error);
     }
@@ -40,7 +41,7 @@ export function deleteById(id: any): Promise<any> {
 export function getById(id: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await brands.findOne({ id }));
+      resolve(await category.findOne({ id }));
     } catch (error) {
       reject(error);
     }

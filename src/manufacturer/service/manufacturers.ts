@@ -10,11 +10,8 @@ export async function registerManufacturer(data: IManufacturer):Promise<any> {
     }
   })
 }
-export async function getAllManufacturersDetail():Promise<any> {
-  return await Model.find(
-    {},
-    { id: 1, companyName: 1, location: 1, phone: 1, email: 1 }
-  );
+export async function getAllManufacturersDetail():Promise<IManufacturer[]> {
+  return await Model.aggregate([{$project:{_id:0,id:'$_id',companyName:1,email:1,phone:1,location:1}}])
 }
 export async function editManufacturer(id: string, body: IManufacturer):Promise<any> {
   return await Model.findByIdAndUpdate({ id }, { body });

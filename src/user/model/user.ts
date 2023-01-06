@@ -8,7 +8,6 @@ export interface IUser {
 }
 export const userSchema: Schema = new Schema<IUser>(
   {
-    id: { type:Schema.Types.ObjectId,required: false, unique: true, index: true },
     username: { type:String,required: true, unique: true },
     password: { type:String,required: true, unique: true, select: false },
     role: {

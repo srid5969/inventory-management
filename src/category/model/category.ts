@@ -1,7 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 
 export interface ICategory {
-  _id: object;
   id: object;
   categoryName: object;
   categoryCode: string;
@@ -10,13 +9,7 @@ export interface ICategory {
 }
 export const categorySchema: Schema = new Schema<ICategory>(
   {
-    id: {
-      type: Schema.Types.ObjectId,
-      unique: true,
-      index: true,
-      auto: true,
-      default: mongoose.Types.ObjectId,
-    },
+   
     categoryDescription: {
       type: String,
     },

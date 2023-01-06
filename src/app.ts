@@ -8,6 +8,8 @@ import manufacturers from "./manufacturer/controller/manufacturers";
 import auth from "./common/middleware/auth";
 import brands from "./brand/controller/brands";
 import product from "./Product/controller/product";
+import category from "./category/controller/category";
+
 
 
 const port: number = 8080;
@@ -26,6 +28,7 @@ app.use("/api/user", user);
 app.use("/api/", manufacturers);
 app.use("/api/", brands);
 app.use("/api/", product);
+app.use("/api/", category);
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });

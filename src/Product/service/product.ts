@@ -8,8 +8,8 @@ import category, { ICategory } from "../../category/model/category";
 export async function addProduct(data: IProduct): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      data.brand = await brands.findOne({ brand: data.brand },{_id:1});
-      data.category=await category.findOne({},{_id:1})
+      data.brand = await brands.findOne({ brand: data.brand }, { _id: 1 });
+      data.category = await category.findOne({}, { _id: 1 });
       resolve(await product.create(data));
     } catch (error) {
       reject(error);
@@ -17,21 +17,38 @@ export async function addProduct(data: IProduct): Promise<any> {
   });
 }
 export async function getAllProduct(): Promise<IProduct[]> {
-  return await product
-    .find(
-      {},
-      {
-        id: 1,
+  return await product.aggregate([
+    {
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      $project: {
+        _id: 0,
+        id: "$_id",
         productName: 1,
-        sku: 1,
-        category: 1,
-        brand: 1,
-        price: 1,
-        quantity: 1,
-      }
-    )
-    .populate({ path: "brand" })
-    .populate({ path: "category" });
+      sku: 1,
+      category: 1,
+      brand: 1,
+      price: 1,
+      quantity: 1,
+      },
+    },
+  ]);
+  // .find(
+  //   {},
+  //   {
+
+  //     productName: 1,
+  //     sku: 1,
+  //     category: 1,
+  //     brand: 1,
+  //     price: 1,
+  //     quantity: 1,
+  //   }
+  // )
+  // .populate({ path: "brand" })
+  // .populate({ path: "category" }).proje;
 }
 export async function editProductById(id: any, body: IProduct): Promise<any> {
   return await product.findByIdAndUpdate({ id }, { body });

@@ -3,7 +3,7 @@ import brands, { IBrand } from "../model/brands";
 export function listAllBrands(): Promise<IBrand[]> {
   return new Promise<IBrand[]>(async (resolve, reject) => {
     try {
-      const data = await brands.find();
+      const data = await brands.aggregate([{$project: {_id: 0, id: '$_id',brandName:1,brandImage:1,brandDescription:1}}]);
       resolve(data);
     } catch (error) {
       reject(error);

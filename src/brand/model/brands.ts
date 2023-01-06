@@ -1,7 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
 
 export interface IBrand {
-  _id: any;
   id: object;
   brandName: string;
   brandImage: string;
@@ -10,13 +9,6 @@ export interface IBrand {
 }
 export const brandSchema: Schema = new Schema<IBrand>(
   {
-    id: {
-      type: Schema.Types.ObjectId,
-      unique: true,
-      index: true,
-      auto: true,
-      default: mongoose.Types.ObjectId,
-    },
     brandName: { required: false, type: String },
     brandImage: { required: false, type: String },
     brandDescription: { required: false, type: String },

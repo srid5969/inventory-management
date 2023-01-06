@@ -1,6 +1,5 @@
 import mongoose, { Schema, model, Document } from "mongoose";
 export interface IProduct extends Document {
-  _id:object;
   id: number;
   productName: string;
   category: any;
@@ -15,12 +14,6 @@ export interface IProduct extends Document {
 }
 export const productSchema: Schema = new Schema<IProduct>(
   {
-    id: {
-      type: Schema.Types.Mixed,
-      required: false,
-      unique: true,
-      index: true,
-    },
     productName: { type: String, required: true },
     category: { required: false, type: Schema.Types.Mixed, ref: "categories" },
     brand: { required: false, type: Schema.Types.Mixed, ref: "brands" },
