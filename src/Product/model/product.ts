@@ -23,7 +23,7 @@ export const productSchema: Schema = new Schema<IProduct>(
 
     status: { type: Schema.Types.String },
     productImage: { type: Schema.Types.Mixed, required: false },
-    barCode: { type: mongoose.Types.ObjectId, required: false },
+    barCode: { type: Schema.Types.Mixed, required: false },
     createDate: { type: Date, default: Date.now(), select: false },
   },
   {

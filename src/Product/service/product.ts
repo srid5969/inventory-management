@@ -17,38 +17,22 @@ export async function addProduct(data: IProduct): Promise<any> {
   });
 }
 export async function getAllProduct(): Promise<IProduct[]> {
-  return await product.aggregate([
-    {
-      /**
-       * specifications: The fields to
-       *   include or exclude.
-       */
-      $project: {
+  return await product
+    .find(
+      {},
+      {
         _id: 0,
         id: "$_id",
         productName: 1,
-      sku: 1,
-      category: 1,
-      brand: 1,
-      price: 1,
-      quantity: 1,
-      },
-    },
-  ]);
-  // .find(
-  //   {},
-  //   {
-
-  //     productName: 1,
-  //     sku: 1,
-  //     category: 1,
-  //     brand: 1,
-  //     price: 1,
-  //     quantity: 1,
-  //   }
-  // )
-  // .populate({ path: "brand" })
-  // .populate({ path: "category" }).proje;
+        sku: 1,
+        category: 1,
+        brand: 1,
+        price: 1,
+        quantity: 1,
+      }
+    )
+    .populate({ path: "brand" })
+    .populate({ path: "category" });
 }
 export async function editProductById(id: any, body: IProduct): Promise<any> {
   return await product.findByIdAndUpdate({ id }, { body });

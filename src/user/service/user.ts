@@ -5,8 +5,8 @@ import { generateToken } from "../../usertoken/token";
 
 export async function login(username: string, password: string): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
-    const data: any = await user.findOne({ username }, { _id: 1, password: 1 });
-    console.log();
+    let data: any = await user.findOne({ username }, { _id: 1, password: 1 ,username:1});
+    console.log(data);
 console.log(password);
 
     if (!(username && password)) {
@@ -25,7 +25,7 @@ console.log(password);
       if (Data) {
         await generateToken(data._id)
           .catch((err) => reject(err))
-          .then((data) => resolve({ token: data }));
+          .then((token) => resolve({ username:data.username,id:data._id,token }));
       } else {
         reject({ message: "wrong password" });
       }
