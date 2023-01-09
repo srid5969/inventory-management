@@ -3,14 +3,17 @@ import ventor, { IVendor } from "../model/ventor";
 export function listAllVendors(): Promise<IVendor[]> {
   return new Promise<IVendor[]>(async (resolve, reject) => {
     try {
-      const data = await ventor.aggregate([
+      const data = await ventor.find(
+        {},
         {
-          $project: {
-            _id: 0,
-            id: "$_id",
-          },
-        },
-      ]);
+          _id: 0,
+          id: "$_id",
+          primaryContactNumber: "$workContactNumber",
+          companyName: 1,
+          vendorEmail: 1,
+          vendorContactNumber: 1,
+        }
+      );
       resolve(data);
     } catch (error) {
       reject(error);
@@ -18,18 +21,15 @@ export function listAllVendors(): Promise<IVendor[]> {
   });
 }
 export function addVendor(data: IVendor): Promise<any> {
-  return new Promise<any>(async (resolve, reject) => {
-    try {
-      resolve(await ventor.create(data));
-    } catch (error) {
-      reject(error);
-    }
-  });
+  console.log("====================================================================================");
+const Data=new ventor(data) 
+
+return Data.save()
 }
 export function editById(_id: any, data: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await ventor.findOneAndUpdate({ _id }, { data }));
+      resolve(await ventor.findOneAndUpdate(_id, data));
     } catch (error) {
       reject(error);
     }

@@ -2,20 +2,21 @@
 import product, { IProduct } from "../model/product";
 import brands, { IBrand } from "../../brand/model/brands";
 import category, { ICategory } from "../../category/model/category";
-import { domainToASCII } from "url";
 
 //TODO : import bulk document
 //TODO : csv to json
 export async function addProduct(data: IProduct): Promise<any> {
-  return new Promise<any>(async (resolve, reject) => {
-    try {
-      data.brand = await brands.findOne({ brand: data.brand }, { _id: 1 });
-      data.category = await category.findOne({}, { _id: 1 });
-      resolve(await product.create(data));
-    } catch (error) {
-      reject(error);
-    }
-  });
+  try {
+    data.brand = await (
+      await brands.findOne({ brand: data.brand }, { _id: 1 })
+    )._id;
+    data.category = await (await category.findOne({}, { _id: 1 }))._id;
+    return await product.create(data);
+  } catch (error) {
+   return  (error);
+    
+   
+  }
 }
 export async function getAllProduct(): Promise<IProduct[]> {
   return await product
@@ -32,8 +33,8 @@ export async function getAllProduct(): Promise<IProduct[]> {
         quantity: 1,
       }
     )
-    .populate({ path: "brand",transform:(doc=>doc.brandName)})
-    .populate({ path: "category" ,transform:(doc=>doc.categoryName)});
+    .populate({ path: "brand", transform: (doc) => doc.brandName })
+    .populate({ path: "category", transform: (doc) => doc.categoryName });
 }
 export async function editProductById(id: any, body: IProduct): Promise<any> {
   return await product.findByIdAndUpdate({ id }, { body });
@@ -44,8 +45,8 @@ export async function deleteAProduct(id: any): Promise<any> {
 export async function getAProduct(_id: any): Promise<any> {
   return await product
     .findOne({ _id })
-    .populate({ path: "brand",transform:(doc=>doc.brandName)})
-    .populate({ path: "category" ,transform:(doc=>doc.categoryName)});
+    .populate({ path: "brand", transform: (doc) => doc.brandName })
+    .populate({ path: "category", transform: (doc) => doc.categoryName });
 }
 export async function importBulkProduct(data: IProduct[]) {
   return await product.insertMany(data);

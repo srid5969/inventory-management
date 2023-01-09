@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 export interface IVendor {
   id: any;
+  vendorName: string;
   companyName: string;
   vendorAddress: string;
   vendorEmail: string;
@@ -14,16 +15,20 @@ export interface IVendor {
   personalContactNumber: number;
   designation: string;
 }
- const vendorSchema: Schema = new Schema<IVendor>(
+const vendorSchema: Schema = new Schema<IVendor>(
   {
     companyName: { type: String, required: true },
     vendorAddress: { type: String, required: true },
+    vendorName: { type: String, required: true },
     vendorEmail: { type: String, required: true },
     vendorContactNumber: { type: Number, required: true },
     website: { type: String, required: true },
     GSTIN: { type: String, required: true },
     contactPersonName: { type: String, required: true },
-    emailAddress: { type: String, required: [true,"Please Enter Email Address"] },
+    emailAddress: {
+      type: String,
+      required: [true, "Please Enter Email Address"],
+    },
     workContactNumber: { type: Number, required: true },
     personalContactNumber: { type: Number, required: true },
     designation: { type: String, required: true },

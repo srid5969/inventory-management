@@ -11,9 +11,6 @@ import product from "./Product/controller/product";
 import category from "./category/controller/category";
 import ventor from "./ventor/controller/ventor";
 
-
-
-
 const port: number = 8080;
 
 mongoose.connect(db, { autoIndex: false });

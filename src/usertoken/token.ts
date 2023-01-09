@@ -47,11 +47,19 @@ export async function generateToken(userId: any): Promise<any> {
         user: userId,
         token: generatedToken,
       });
-      data.save()
-  resolve(data.token)
+      data.save();
+      resolve(data.token);
     } catch (error) {
-      reject('jgdgafdsgfasdgfgfgfdsufuausdfggasfdhgkakg')
+      reject("jgdgafdsgfasdgfgfgfdsufuausdfggasfdhgkakg");
     }
-   
   });
+}
+export async function verifyToken(token: string): Promise<boolean> {
+  
+    let TokenData = await Token.findOne({ token });
+    if (TokenData) {
+      return true;
+    }
+    return false;
+  
 }
