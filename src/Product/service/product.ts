@@ -2,6 +2,7 @@
 import product, { IProduct } from "../model/product";
 import brands, { IBrand } from "../../brand/model/brands";
 import category, { ICategory } from "../../category/model/category";
+import { domainToASCII } from "url";
 
 //TODO : import bulk document
 //TODO : csv to json
@@ -31,8 +32,8 @@ export async function getAllProduct(): Promise<IProduct[]> {
         quantity: 1,
       }
     )
-    .populate({ path: "brand" })
-    .populate({ path: "category" });
+    .populate({ path: "brand",transform:(doc=>doc.brandName)})
+    .populate({ path: "category" ,transform:(doc=>doc.categoryName)});
 }
 export async function editProductById(id: any, body: IProduct): Promise<any> {
   return await product.findByIdAndUpdate({ id }, { body });
@@ -40,11 +41,11 @@ export async function editProductById(id: any, body: IProduct): Promise<any> {
 export async function deleteAProduct(id: any): Promise<any> {
   return await product.deleteOne({ id });
 }
-export async function getAProduct(id: any): Promise<any> {
+export async function getAProduct(_id: any): Promise<any> {
   return await product
-    .findOne({ id })
-    .populate({ path: "brand" })
-    .populate({ path: "category" });
+    .findOne({ _id })
+    .populate({ path: "brand",transform:(doc=>doc.brandName)})
+    .populate({ path: "category" ,transform:(doc=>doc.categoryName)});
 }
 export async function importBulkProduct(data: IProduct[]) {
   return await product.insertMany(data);

@@ -1,5 +1,4 @@
 import { Request, Response, Express } from "express";
-import { editById } from "src/brand/service/brands";
 import { addProduct, deleteAProduct, editProductById, getAllProduct, getAProduct } from "../service/product";
 let router: Express = require("express").Router();
 router.get("/products", async (req: Request, res: Response) => {
