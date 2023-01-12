@@ -4,7 +4,10 @@ import { login, UserSignUp } from "../service/user";
 
 router.post("/login", async (req: Request, res: Response) => {
   login(req.body.username, req.body.password)
-    .then((data) => res.json(data))
+    .then((data) => {
+      res.json(data);
+      console.log(data);
+    })
     .catch((err) => res.status(400).json(err));
 });
 router.post("/signup", (req: Request, res: Response) => {

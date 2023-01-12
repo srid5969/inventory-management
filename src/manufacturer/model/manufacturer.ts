@@ -13,7 +13,6 @@ export interface IManufacturer {
 }
 export const manufacturerSchema: Schema = new Schema<IManufacturer>(
   {
-   
     companyName: { required: false, type: String },
     location: { required: false, type: String },
     phone: { required: false, type: Number },

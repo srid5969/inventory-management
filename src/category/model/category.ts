@@ -4,13 +4,13 @@ export interface ICategory {
   id: object;
   categoryName: object;
   categoryCode: string;
-  categoryDescription: string;
+  description: string;
   createDate: any;
 }
 export const categorySchema: Schema = new Schema<ICategory>(
   {
    
-    categoryDescription: {
+    description: {
       type: String,
     },
     categoryName: {

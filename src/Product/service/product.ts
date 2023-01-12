@@ -11,11 +11,13 @@ export async function addProduct(data: IProduct): Promise<any> {
       await brands.findOne({ brand: data.brand }, { _id: 1 })
     )._id;
     data.category = await (await category.findOne({}, { _id: 1 }))._id;
-    return await product.create(data);
+    const data1 = await new product(data);
+    const Data: IProduct = await data1.save();
+    return await Data;
   } catch (error) {
-   return  (error);
-    
-   
+    console.error();
+
+    return error;
   }
 }
 export async function getAllProduct(): Promise<IProduct[]> {
@@ -30,6 +32,10 @@ export async function getAllProduct(): Promise<IProduct[]> {
         category: 1,
         brand: 1,
         price: 1,
+        description:1,
+        status:1,
+        uniqueid:"$uniqueId",
+        productImage:1,
         quantity: 1,
       }
     )

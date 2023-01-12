@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { verifyToken } from "../../usertoken/token";
 
 export default async function (
-  req: Request,
+  req: Request | any,
   res: Response,
   next: NextFunction
 ) {
@@ -12,21 +12,21 @@ export default async function (
   res.setHeader("Access-Control-Allow-Methods", "POST");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   let originalUrl: string = req.originalUrl;
-  // console.log(req.body);
   console.log(
     `\n\n \t http://${req.hostname}:8080${originalUrl} \t ${req.method}`
   );
-  console.log("\tIP Address ", req.ip);
+  // console.log("\tIP Address ", req.ip);
 
   let username: string = req.body.username;
   let password: string = req.body.password;
-  if (username && password && originalUrl == "/api/user/login") {
+  if (username && password && originalUrl === "/api/user/login") {
     return next();
   }
   if (req.headers.authorization) {
     const token = req.headers.authorization;
     const isUserAlreadyLoggedIn = await verifyToken(token);
-    if (isUserAlreadyLoggedIn === true) {
+    if (isUserAlreadyLoggedIn) {
+      req.user = isUserAlreadyLoggedIn;
       return next();
     }
     return res.status(404).json({

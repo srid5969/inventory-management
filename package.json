@@ -9,7 +9,8 @@
     "start:dev": "ts-node-dev --respawn --pretty --transpile-only ./src/app.ts",
     "start:prod": "pm2  start ./dist/app.js",
     "stop:prod": "pm2  stop ./dist/app.js",
-    "restart:prod": "pm2  restart ./dist/app.js",
+    "restart:prod": "pm2  restart ./dist/app.js --watch",
+    "monit:prod": "pm2  monit ./dist/app.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,6 +18,8 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "bson": "^4.7.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^6.8.3",

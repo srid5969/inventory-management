@@ -6,8 +6,7 @@ import { generateToken } from "../../usertoken/token";
 export async function login(username: string, password: string): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     let data: any = await user.findOne({ username }, { _id: 1, password: 1 ,username:1});
-    console.log(data);
-console.log(password);
+
 
     if (!(username && password)) {
       reject({ "message":"First enter username and password miss Frontend developer" });
@@ -24,7 +23,7 @@ console.log(password);
       const Data = await bcrypt.compare(password, data.password);
       if (Data) {
         await generateToken(data._id)
-          .catch((err) => reject(err))
+          .catch((err) => reject({message:err.toString()}))
           .then((token) => resolve({ username:data.username,id:data._id,token }));
       } else {
         reject({ message: "wrong password" });

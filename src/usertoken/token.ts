@@ -54,12 +54,13 @@ export async function generateToken(userId: any): Promise<any> {
     }
   });
 }
-export async function verifyToken(token: string): Promise<boolean> {
+export async function verifyToken(token: string): Promise<any> {
   
     let TokenData = await Token.findOne({ token });
     if (TokenData) {
-      return true;
+      
+      return TokenData.user;
     }
-    return false;
+    return null;
   
 }

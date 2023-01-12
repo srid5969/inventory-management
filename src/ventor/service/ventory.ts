@@ -10,6 +10,7 @@ export function listAllVendors(): Promise<IVendor[]> {
           id: "$_id",
           primaryContactNumber: "$workContactNumber",
           companyName: 1,
+          contactPersonName:1,
           vendorEmail: 1,
           vendorContactNumber: 1,
         }
@@ -21,7 +22,6 @@ export function listAllVendors(): Promise<IVendor[]> {
   });
 }
 export function addVendor(data: IVendor): Promise<any> {
-  console.log("====================================================================================");
 const Data=new ventor(data) 
 
 return Data.save()
