@@ -23,7 +23,7 @@ const purchasedProductSchema: Schema = new Schema<IPurchasedProducts>(
     discount: { type: Number, required: true },
     unit: { type: String, required: true },
     tax: { type: Number, required: true },
-    total: { type: Number, required: true },
+    total: { type: Number, required: false },
   },
   {
     versionKey: false,

@@ -14,6 +14,8 @@ import category from "./category/controller/category";
 import ventor from "./ventor/controller/ventor";
 import customers from "./customers/controller/customers";
 import purchase from "./purchase/controller/purchase";
+import purchasedProducts from "./purchasedProducts/controller/purchasedProducts";
+
 
 const port: number = 8080;
 
@@ -39,6 +41,7 @@ app.use("/api/", category);
 app.use("/api/", ventor);
 app.use("/api/", customers);
 app.use("/api/", purchase);
+app.use("/api/", purchasedProducts);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

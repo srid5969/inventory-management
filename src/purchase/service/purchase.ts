@@ -8,12 +8,16 @@ import * as productCalculations from "./productCalculations";
 
 export async function addPurchase(data: IPurchase): Promise<any> {
   try {
+    console.log(data);
+
     data.companyName = await (
       await ventor.findOne({ companyName: data.companyName }, { _id: 1 })
     )._id;
-    // console.log(data);
+    console.log(data);
 
-    return await purchase.create(data);
+    const Data: any = await purchase.create(data);
+
+    return await { id: Data._id };
   } catch (error) {
     return error;
   }
@@ -33,15 +37,15 @@ export async function purchaseList(): Promise<any[]> {
         paymentMode: 1,
         paymentStatus: 1,
         completed: 1,
-        products: 1,
+        // productDetails: 1,
         totalTax: 1,
         totalDiscount: 1,
         grandTotal: 1,
       }
     )
-    .populate({ path: "companyName", transform: (doc) => doc.companyName })
-    .populate({ path: "products", model: "products" });
-  console.log(data);
+    .populate({ path: "companyName", transform: (doc) => doc.companyName });
+  // .populate({ path: "productDetails"});
+  // console.log(data);
 
   return data;
 }
@@ -101,17 +105,24 @@ export async function getPurchaseDetailsById(_id: any): Promise<any> {
 export async function importBulkPurchase(data: IPurchase[]) {
   return await purchase.insertMany(data);
 }
+/**
+ *
+ *
+ * @export
+ * @param {string} purchaseOrderNumber
+ * @return {} 
+ */
 export async function afterClickingTheSubmitButton(
   purchaseOrderNumber: string
 ) {
-  const data = await purchase.find({ purchaseOrderNumber });
+  const data = await purchasedProducts.find({ purchaseOrderNumber });
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
   const totalTax = await productCalculations.calculateTotalTax(data);
   const subTotal = await productCalculations.calculateSubTotal(data);
   const grandTotal = await productCalculations.calculateTotalTax(data);
   const Data = await purchase.updateOne(
     { purchaseOrderNumber },
-    { totalDiscount, totalTax, subTotal, grandTotal }
+    { totalDiscount, totalTax, subTotal, grandTotal,completed:true }
   );
   return await Data;
 }

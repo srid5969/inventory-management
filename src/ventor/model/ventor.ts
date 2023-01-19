@@ -19,7 +19,7 @@ const vendorSchema: Schema = new Schema<IVendor>(
   {
     companyName: { type: String, required: true },
     vendorAddress: { type: String, required: true },
-    vendorName: { type: String, required: true },
+    vendorName: { type: String, required: false },
     vendorEmail: { type: String, required: true },
     vendorContactNumber: { type: Number, required: true },
     website: { type: String, required: true },
