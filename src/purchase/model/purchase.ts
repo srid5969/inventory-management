@@ -1,15 +1,16 @@
-import mongoose, { Schema, model, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IPurchase {
   postedBy: any;
-  companyName: Schema.Types.ObjectId|any;
+  companyName: Schema.Types.ObjectId | any;
   purchaseOrderNumber: string;
   address: string;
   paymentMode: string;
   paymentStatus: string;
   completed: boolean;
-  products: any;
+  productDetails: any;
   totalTax: string;
+  subTotal: string;
   totalDiscount: string;
   grandTotal: number;
 }
@@ -26,8 +27,13 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
       required: true,
       ref: "vendors",
     },
-    purchaseOrderNumber: { type: String, required: true, unique: true,index:true },
-    products: [
+    purchaseOrderNumber: {
+      type: String,
+      required: true,
+      unique: true,
+      index: true,
+    },
+    productDetails: [
       {
         type: Schema.Types.ObjectId,
         required: false,
@@ -47,7 +53,6 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
   },
   {
     versionKey: false,
-   
   }
 );
 const Purchase = model<IPurchase>("purchases", purchaseSchema);

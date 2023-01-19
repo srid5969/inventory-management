@@ -1,13 +1,17 @@
 import purchase, { IPurchase } from "../model/purchase";
 import manufacturer from "../../manufacturer/model/manufacturer";
 import ventor from "../../ventor/model/ventor";
+import purchasedProducts, {
+  IPurchasedProducts,
+} from "../../purchasedProducts/model/purchasedProducts";
+import * as productCalculations from "./productCalculations";
 
 export async function addPurchase(data: IPurchase): Promise<any> {
   try {
     data.companyName = await (
       await ventor.findOne({ companyName: data.companyName }, { _id: 1 })
     )._id;
-    console.log(data);
+    // console.log(data);
 
     return await purchase.create(data);
   } catch (error) {
@@ -35,8 +39,8 @@ export async function purchaseList(): Promise<any[]> {
         grandTotal: 1,
       }
     )
-    .populate({ path: "companyName", transform: (doc) => doc.companyName });
-  // .populate({ path: "products" });
+    .populate({ path: "companyName", transform: (doc) => doc.companyName })
+    .populate({ path: "products", model: "products" });
   console.log(data);
 
   return data;
@@ -96,4 +100,18 @@ export async function getPurchaseDetailsById(_id: any): Promise<any> {
 }
 export async function importBulkPurchase(data: IPurchase[]) {
   return await purchase.insertMany(data);
+}
+export async function afterClickingTheSubmitButton(
+  purchaseOrderNumber: string
+) {
+  const data = await purchase.find({ purchaseOrderNumber });
+  const totalDiscount = await productCalculations.calculateTotalDiscount(data);
+  const totalTax = await productCalculations.calculateTotalTax(data);
+  const subTotal = await productCalculations.calculateSubTotal(data);
+  const grandTotal = await productCalculations.calculateTotalTax(data);
+  const Data = await purchase.updateOne(
+    { purchaseOrderNumber },
+    { totalDiscount, totalTax, subTotal, grandTotal }
+  );
+  return await Data;
 }

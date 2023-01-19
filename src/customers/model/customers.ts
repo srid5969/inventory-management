@@ -7,6 +7,8 @@ export interface ICustomer {
   email: string;
   phone: number;
   type: string;
+  address: string;
+
   GSTno: string;
   postedBy: any | ObjectId;
 }
@@ -17,6 +19,7 @@ const customersSchema: Schema = new Schema<ICustomer>(
     phone: { type: Number },
     type: { type: String },
     GSTno: { type: String },
+    address: { type: String },
     postedBy: { type: ObjectId, ref: "users" },
   },
   {

@@ -4,7 +4,7 @@ import category ,{ICategory}from "../model/category";
 export function listAllCategory(): Promise<ICategory[]> {
   return new Promise<ICategory[]>(async (resolve, reject) => {
     try {
-      const data = await category.find({},{"id":"$_id",_id:0,categoryDescription:1,categoryName:1,categoryCode:1});
+      const data = await category.find({},{"id":"$_id",_id:0,description:1,categoryName:1,categoryCode:1});
       resolve(data);
     } catch (error) {
       reject(error);

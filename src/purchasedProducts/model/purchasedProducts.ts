@@ -1,8 +1,8 @@
-import mongoose, { Schema, model, Document } from "mongoose";
+import { Schema, model } from "mongoose";
 
 export interface IPurchasedProducts {
   po: any;
-  purchaseOrderNumber: number;
+  purchaseOrderNumber: string;
   productId: any;
   quantity: number;
   mrp: number;
@@ -15,7 +15,7 @@ export interface IPurchasedProducts {
 const purchasedProductSchema: Schema = new Schema<IPurchasedProducts>(
   {
     po: { type: Schema.Types.ObjectId, required: true, ref: "purchases" },
-    purchaseOrderNumber: { type: Number, required: true },
+    purchaseOrderNumber: { type: String, required: true },
     productId: { type: Schema.Types.ObjectId, required: true, ref: "products" },
     quantity: { type: Number, required: true },
     mrp: { type: Number, required: true },

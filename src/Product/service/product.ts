@@ -37,7 +37,7 @@ export async function getAllProduct(): Promise<IProduct[]> {
         uniqueid:"$uniqueId",
         productImage:1,
         quantity: 1,
-      }
+      },{sort:{createDate:-1}}
     )
     .populate({ path: "brand", transform: (doc) => doc.brandName })
     .populate({ path: "category", transform: (doc) => doc.categoryName });

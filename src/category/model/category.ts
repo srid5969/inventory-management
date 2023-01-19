@@ -24,7 +24,7 @@ export const categorySchema: Schema = new Schema<ICategory>(
   {
     versionKey: false,
     autoIndex: false,
-    autoCreate: false,
+    autoCreate: false
     // _id: false,
   }
 );
