@@ -8,12 +8,10 @@ import * as productCalculations from "./productCalculations";
 
 export async function addPurchase(data: IPurchase): Promise<any> {
   try {
-    console.log(data);
 
     data.companyName = await (
       await ventor.findOne({ companyName: data.companyName }, { _id: 1 })
     )._id;
-    console.log(data);
 
     const Data: any = await purchase.create(data);
 
@@ -119,7 +117,7 @@ export async function afterClickingTheSubmitButton(
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
   const totalTax = await productCalculations.calculateTotalTax(data);
   const subTotal = await productCalculations.calculateSubTotal(data);
-  const grandTotal = await productCalculations.calculateTotalTax(data);
+  const grandTotal = await productCalculations.grandTotal(totalTax,totalDiscount,subTotal);
   const Data = await purchase.updateOne(
     { purchaseOrderNumber },
     { totalDiscount, totalTax, subTotal, grandTotal,completed:true }
