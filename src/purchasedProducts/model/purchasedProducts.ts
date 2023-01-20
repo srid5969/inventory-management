@@ -31,8 +31,8 @@ const purchasedProductSchema: Schema = new Schema<IPurchasedProducts>(
     autoCreate: false,
   }
 );
-const Purchase = model<IPurchasedProducts>(
+const PurchasedProducts = model<IPurchasedProducts>(
   "purchasedProducts",
   purchasedProductSchema
 );
-export default Purchase;
+export default PurchasedProducts;

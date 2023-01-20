@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import PurchasedProducts from "../../purchasedProducts/model/purchasedProducts";
 
 export interface IPurchase {
   postedBy: any;
@@ -8,7 +9,6 @@ export interface IPurchase {
   paymentMode: string;
   paymentStatus: string;
   completed: boolean;
-  productDetails: any;
   totalTax: string;
   subTotal: string;
   totalDiscount: string;
@@ -33,13 +33,7 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
       unique: true,
       index: true,
     },
-    productDetails: [
-      {
-        type: Schema.Types.ObjectId,
-        required: false,
-        ref: "purchasedProducts",
-      },
-    ],
+
     address: { type: String },
     paymentMode: { type: String },
     paymentStatus: { type: String },
@@ -57,3 +51,11 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
 );
 const Purchase = model<IPurchase>("purchases", purchaseSchema);
 export default Purchase;
+// export async function getInvoiceForInward(po: string) {
+//   let Data: any = {};
+//   let data: any = await Purchase.findOne({ _id: po });
+//   let data1 = await PurchasedProducts.find({ po });
+//   Data.data = data;
+//   Data.productsDetails = data1;
+//   console.log(Data);
+// }
