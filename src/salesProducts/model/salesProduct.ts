@@ -1,9 +1,8 @@
 import { Schema, model } from "mongoose";
 
-export interface IPurchasedProducts {
-  po: any;
-  purchaseOrderNumber: string;
-  products: any;
+export interface ISalesProduct {
+  salesOrder: any;
+  productId: any;
   quantity: number;
   mrp: number;
   unit: string;
@@ -12,11 +11,14 @@ export interface IPurchasedProducts {
   tax: number;
   total: number;
 }
-const purchasedProductSchema: Schema = new Schema<IPurchasedProducts>(
+const salesProductSchema: Schema = new Schema<ISalesProduct>(
   {
-    po: { type: Schema.Types.ObjectId, required: true, ref: "purchases" },
-    purchaseOrderNumber: { type: String, required: true },
-    products: { type: Schema.Types.ObjectId, required: true, ref: "products" },
+    salesOrder: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: "sales",
+    },
+    productId: { type: Schema.Types.ObjectId, required: true, ref: "products" },
     quantity: { type: Number, required: true },
     mrp: { type: Number, required: true },
     price: { type: Number, required: true },
@@ -31,8 +33,8 @@ const purchasedProductSchema: Schema = new Schema<IPurchasedProducts>(
     autoCreate: false,
   }
 );
-const PurchasedProducts = model<IPurchasedProducts>(
-  "purchasedProducts",
-  purchasedProductSchema
+const SalesProducts = model<ISalesProduct>(
+  "salesProducts",
+  salesProductSchema
 );
-export default PurchasedProducts;
+export default SalesProducts;

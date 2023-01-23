@@ -7,7 +7,7 @@ export async function calculateTotalTax(data: any[]) {
 }
 
 export async function calculateTotalDiscount(data: any[]) {
-  const total = await data.reduce(async (acc, value) => {
+  const total = await data.reduce( (acc, value) => {
     console.log(value);
 
     return acc + value.price * (value.discount / 100) * value.quantity;

@@ -14,7 +14,7 @@ export async function addProducts(data: any, po: any) {
 
   data.po = _Data._id;
   data.purchaseOrderNumber = _Data.purchaseOrderNumber;
-  data.productId = await (await product.findOne({ productName:data.product}))._id;
+  data.productId = await (await product.findOne({ productName:data.productName}))._id;
   console.log(data);
   
   const Data = await purchasedProducts.create(data);

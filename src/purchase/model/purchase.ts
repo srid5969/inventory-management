@@ -11,6 +11,7 @@ export interface IPurchase {
   completed: boolean;
   totalTax: string;
   subTotal: string;
+  description: string;
   totalDiscount: string;
   grandTotal: number;
 }
@@ -40,6 +41,7 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
     totalTax: { type: String, required: false },
     totalDiscount: { type: String, required: false },
     grandTotal: { type: Number, required: false },
+    description: { type: String, required: false },
     completed: {
       type: Boolean,
       default: false,

@@ -16,7 +16,6 @@ import customers from "./customers/controller/customers";
 import purchase from "./purchase/controller/purchase";
 import purchasedProducts from "./purchasedProducts/controller/purchasedProducts";
 
-
 const port: number = 8080;
 
 mongoose.connect(db, { autoIndex: false });

@@ -111,16 +111,16 @@ export async function importBulkPurchase(data: IPurchase[]) {
  * @return {} 
  */
 export async function afterClickingTheSubmitButton(
-  purchaseOrderNumber: string
+  po: any
 ) {
-  const data = await purchasedProducts.find({ purchaseOrderNumber });
+  const data = await purchasedProducts.find({ po });
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
   const totalTax = await productCalculations.calculateTotalTax(data);
   const subTotal = await productCalculations.calculateSubTotal(data);
   const grandTotal = await productCalculations.grandTotal(totalTax,totalDiscount,subTotal);
   const Data = await purchase.updateOne(
-    { purchaseOrderNumber },
-    { totalDiscount, totalTax, subTotal, grandTotal,completed:true }
+    { _id:po },
+   {$set: { completed:true,totalDiscount, totalTax, subTotal, grandTotal }}
   );
   return await Data;
 }

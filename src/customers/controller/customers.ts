@@ -6,7 +6,7 @@ import {addCustomer,deleteById,editById,getById,listAllCustomers,} from "../serv
 
 
 router.post("/customer", async (req: Request|any, res: Response) => {
-    req.body.postedBy=req.user;
+    
     addCustomer(req.body).then((data) => res.json(data));
   });
 router.get("/customers", async (req: Request, res: Response) => {
