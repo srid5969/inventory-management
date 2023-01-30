@@ -42,3 +42,7 @@ export async function UserSignUp(data: IUser): Promise<IUser> {
     role: data.role,
   });
 }
+export async function logout(data){
+  
+
+}

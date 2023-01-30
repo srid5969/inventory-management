@@ -14,6 +14,8 @@ export interface IPurchase {
   description: string;
   totalDiscount: string;
   grandTotal: number;
+  date: Date;
+  createdAt: string;
 }
 const purchaseSchema: Schema = new Schema<IPurchase>(
   {
@@ -46,6 +48,8 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
       type: Boolean,
       default: false,
     },
+    date: { type: Date, default: Date.now() },
+    createdAt: { type: String, default: Date.now().toString() },
   },
   {
     versionKey: false,
@@ -59,5 +63,4 @@ export default Purchase;
 //   let data1 = await PurchasedProducts.find({ po });
 //   Data.data = data;
 //   Data.productsDetails = data1;
-//   console.log(Data);
 // }

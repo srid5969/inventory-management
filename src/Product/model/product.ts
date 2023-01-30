@@ -10,26 +10,28 @@ export interface IProduct extends Document {
   status: string;
   productImage: any;
   barCode: any;
+  stock: number;
   createDate: any;
 }
 export const productSchema: Schema = new Schema<IProduct>(
   {
-    productName: { type: String, required: true },
+    productName: { type: String, required: true, index:true,unique: true },
     category: { required: false, type: Schema.Types.Mixed, ref: "categories" },
     brand: { required: false, type: Schema.Types.Mixed, ref: "brands" },
-    uniqueId: { type: String, required: false },
-    sku: { type: String, required: false },
-    description: { type: String , required: false },
-
-    status: { type:String ,required: false},
-    productImage: { type:String, required: false },
-    barCode: { type: String, required: false },
+    uniqueId: { type: String, required: false},
+    sku: { type: String, required: false, unique: true },
+    description: { type: String, required: false },
+    status: { type: String, required: false },
+    stock: { type: Number, required: false, default: 0 },
+    productImage: { type: String, required: false, unique: true },
+    barCode: { 
+      type: String, required: false, 
+      // unique: true 
+    },
     createDate: { type: Date, default: Date.now(), select: false },
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false,
   }
 );
 productSchema.statics.findAllMethod = async function findAllMethod(): Promise<

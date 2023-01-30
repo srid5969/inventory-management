@@ -4,11 +4,10 @@ import ventor from "../../ventor/model/ventor";
 import purchasedProducts, {
   IPurchasedProducts,
 } from "../../purchasedProducts/model/purchasedProducts";
-import * as productCalculations from "./productCalculations";
+import * as productCalculations from "../../common/helpers/invoiceCalculation";
 
 export async function addPurchase(data: IPurchase): Promise<any> {
   try {
-
     data.companyName = await (
       await ventor.findOne({ companyName: data.companyName }, { _id: 1 })
     )._id;
@@ -43,7 +42,6 @@ export async function purchaseList(): Promise<any[]> {
     )
     .populate({ path: "companyName", transform: (doc) => doc.companyName });
   // .populate({ path: "productDetails"});
-  // console.log(data);
 
   return data;
 }
@@ -66,7 +64,6 @@ export async function draftPurchaseList(): Promise<any[]> {
       }
     )
     .populate({ path: "companyName", transform: (doc) => doc.companyName });
-  console.log(data);
 
   return data;
 }
@@ -108,19 +105,25 @@ export async function importBulkPurchase(data: IPurchase[]) {
  *
  * @export
  * @param {string} purchaseOrderNumber
- * @return {} 
+ * @return {}
  */
-export async function afterClickingTheSubmitButton(
-  po: any
-) {
+export async function afterClickingTheSubmitButton(po: any) {
+  console.log(po);
   const data = await purchasedProducts.find({ po });
+  
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
   const totalTax = await productCalculations.calculateTotalTax(data);
   const subTotal = await productCalculations.calculateSubTotal(data);
-  const grandTotal = await productCalculations.grandTotal(totalTax,totalDiscount,subTotal);
-  const Data = await purchase.updateOne(
-    { _id:po },
-   {$set: { completed:true,totalDiscount, totalTax, subTotal, grandTotal }}
+  const grandTotal = await productCalculations.grandTotal(
+    totalTax,
+    totalDiscount,
+    subTotal
   );
+  const Data = await purchase.updateOne(
+    { _id: po },
+    { $set: { completed: true, totalDiscount, totalTax, subTotal, grandTotal } }
+  );
+  console.log(Data);
+  
   return await Data;
 }

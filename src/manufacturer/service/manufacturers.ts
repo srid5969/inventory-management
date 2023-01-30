@@ -4,12 +4,12 @@ import { addBrand } from "../../brand/service/brands";
 export async function registerManufacturer(data: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      let addBrands=await addBrand(data)
-      console.log(addBrands);
-      data.brand=addBrands;
-      console.log(await Model.create(data));
+      let addBrands = await addBrand(data);
+      data.brand = addBrands;
+      await Model.create(data);
       resolve({ status: "success" });
     } catch (error) {
+      error.status=400
       reject(error);
     }
   });

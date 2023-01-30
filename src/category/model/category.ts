@@ -9,22 +9,23 @@ export interface ICategory {
 }
 export const categorySchema: Schema = new Schema<ICategory>(
   {
-   
     description: {
       type: String,
     },
     categoryName: {
       type: String,
+      unique: true,
     },
     categoryCode: {
       type: String,
-    }, 
+      unique: true,
+    },
     createDate: { type: Date, default: Date.now() },
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false
+    // autoIndex: false,
+    // autoCreate: false,
     // _id: false,
   }
 );

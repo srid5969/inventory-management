@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 export interface ISalesProduct {
   salesOrder: any;
-  productId: any;
+  product: any;
   quantity: number;
   mrp: number;
   unit: string;
@@ -18,7 +18,7 @@ const salesProductSchema: Schema = new Schema<ISalesProduct>(
       required: true,
       ref: "sales",
     },
-    productId: { type: Schema.Types.ObjectId, required: true, ref: "products" },
+    product: { type: Schema.Types.ObjectId, required: true, ref: "products" },
     quantity: { type: Number, required: true },
     mrp: { type: Number, required: true },
     price: { type: Number, required: true },
@@ -29,8 +29,8 @@ const salesProductSchema: Schema = new Schema<ISalesProduct>(
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false,
+    // autoIndex: false,
+    // autoCreate: false,
   }
 );
 const SalesProducts = model<ISalesProduct>(

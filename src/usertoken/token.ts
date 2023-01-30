@@ -22,8 +22,8 @@ const tokenSchema: Schema = new Schema<IUserToken>(
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false,
+    // autoIndex: false,
+    // autoCreate: false,
   }
 );
 
@@ -42,25 +42,25 @@ export async function generateToken(userId: any): Promise<any> {
   let generatedToken = await hashed;
 
   return await new Promise<any>(async (resolve, reject) => {
-    try {
-      const data = new Token({
-        user: userId,
-        token: generatedToken,
-      });
-      data.save();
-      resolve(data.token);
-    } catch (error) {
-      reject("jgdgafdsgfasdgfgfgfdsufuausdfggasfdhgkakg");
-    }
+    const data = new Token({
+      user: userId,
+      token: generatedToken,
+    });
+    await data.save();
+    resolve(data.token);
   });
 }
 export async function verifyToken(token: string): Promise<any> {
-  
-    let TokenData = await Token.findOne({ token });
-    if (TokenData) {
-      
-      return TokenData.user;
-    }
-    return null;
-  
+  let TokenData = await Token.findOne({ token });
+  if (TokenData) {
+    return TokenData.user;
+  }
+  return null;
+}
+export async function logout(userId: any) {
+  const data = new Token({
+    user: userId,
+    token: "Logged out",
+  });
+  await data.save();
 }

@@ -13,20 +13,18 @@ export interface IManufacturer {
 }
 export const manufacturerSchema: Schema = new Schema<IManufacturer>(
   {
-    companyName: { required: false, type: String },
+    companyName: { required: false, type: String,unique:true },
     location: { required: false, type: String },
-    phone: { required: false, type: Number },
-    email: { required: false, type: String },
-    website: { required: false, type: String },
+    phone: { required: false, type: Number ,unique:true},
+    email: { required: false, type: String ,unique:true},
+    website: { required: false, type: String ,unique:true},
     establishment: { required: false, type: Number },
     brand: [{ required: false, type: Schema.Types.ObjectId, ref: "brands" }],
     createDate: { type: Date, default: Date.now() },
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false,
-    // _id: false,
+   
   }
 );
 

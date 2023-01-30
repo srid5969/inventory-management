@@ -2,7 +2,7 @@
   "name": "admin-login",
   "version": "1.0.0",
   "description": "",
-  "main": "app.ts",
+  "main": "src/app.ts",
   "scripts": {
     "build": "tsc --build",
     "dev": "ts-node ./src/app.ts",

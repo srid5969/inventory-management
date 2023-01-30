@@ -4,7 +4,7 @@ import { verifyToken } from "../../usertoken/token";
 
 export default async function (
   req: Request ,
-  res: Response,  
+  res: Response,
   next: NextFunction
 ) {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -16,7 +16,6 @@ export default async function (
   console.log(
     `\n\n \t http://${req.hostname}:8080${originalUrl} \t ${req.method}`
     );
-    // console.log("\tIP Address ", req.ip);
     console.log(req.body);
 
   let username: string = req.body.username;
@@ -33,11 +32,11 @@ export default async function (
     }
     return res.status(404).json({
       message: "Token Not  verified",
-      error: " Enter through login In order to avoid inconvenience"
+      error: "Enter through login In order to avoid inconvenience"
     });
   }
   res.status(404).json({
     message: "No data found",
-    error: " Enter through login In order to avoid inconvenience"
+    error: "Enter through login In order to avoid inconvenience"
   });
 }

@@ -14,18 +14,17 @@ export interface ICustomer {
 }
 const customersSchema: Schema = new Schema<ICustomer>(
   {
-    name: { type: String },
-    email: { type: String },
-    phone: { type: Number },
+    name: { type: String ,unique:true},
+    email: { type: String ,unique:true},
+    phone: { type: Number ,unique:true},
     type: { type: String },
-    GSTno: { type: String },
+    GSTno: { type: String ,unique:true},
     address: { type: String },
     postedBy: { type: ObjectId, ref: "users" },
   },
   {
     versionKey: false,
-    autoIndex: false,
-    autoCreate: false,
+   
   }
 );
 const Customer = model<ICustomer>("customers", customersSchema);

@@ -4,10 +4,8 @@ let router: Express = require("express").Router();
 import { addPurchase, afterClickingTheSubmitButton, purchaseList } from "../service/purchase";
 router.post("/purchase", async (req: Request, res: Response) => {
   addPurchase(req.body)
-    .then((data) => {res.send(data)
-    console.log(data);
-    })
-    .catch((data) => res.send(data));
+  .then((data) => res.send(data))
+  .catch((err) => res.json(err));
 });
 router.get("/purchases", async (req: Request, res: Response) => {
   purchaseList()
