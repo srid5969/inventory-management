@@ -3,6 +3,7 @@ let router: Express = require("express").Router();
 import {
   addSalesPre,
   afterClickingTheSubmitButton,
+  getInvoiceForOutward,
   listAllSales,
 } from "../service/sales";
 
@@ -21,5 +22,10 @@ router.get("/sales", async (req: Request, res: Response) => {
   listAllSales()
     .then((data) => res.send(data))
     .catch((err) => res.json(err));
+});
+router.get("/outward/invoice", async (req: Request, res: Response) => {
+  getInvoiceForOutward(req.query.id)
+    .then((data) => res.send(data))
+    .catch((data) => res.send(data));
 });
 export default router;

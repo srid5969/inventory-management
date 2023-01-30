@@ -16,6 +16,8 @@ import purchase from "./purchase/controller/purchase";
 import purchasedProducts from "./purchasedProducts/controller/purchasedProducts";
 import sales from "./sales/controller/sales";
 import salesProduct from "./salesProducts/controller/salesProduct";
+import dashBoard from "./dashBoard/controller/dashBoard";
+
 
 const port: number = 8080;
 
@@ -43,6 +45,7 @@ app.use("/api/", purchase);
 app.use("/api/", purchasedProducts);
 app.use("/api/", sales);
 app.use("/api/", salesProduct);
+app.use("/api/", dashBoard);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
