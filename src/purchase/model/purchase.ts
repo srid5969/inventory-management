@@ -9,6 +9,8 @@ export interface IPurchase {
   paymentMode: string;
   paymentStatus: string;
   completed: boolean;
+  status: string;
+  orderStatus: string;
   totalTax: string;
   subTotal: string;
   description: string;
@@ -39,6 +41,8 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
 
     address: { type: String },
     paymentMode: { type: String },
+    status: { type: String },
+    orderStatus: { type: String },
     paymentStatus: { type: String },
     totalTax: { type: String, required: false },
     totalDiscount: { type: String, required: false },

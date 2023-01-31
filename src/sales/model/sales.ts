@@ -8,8 +8,9 @@ export interface ISales {
   supplier: any; //vendor id
   paymentMode: string;
   paymentStatus: string;
+  status:string
+  orderStatus:string
   address: string;
-  // unit: string;
   totalTax: string;
   subTotal: string;
   totalDiscount: string;
@@ -22,13 +23,14 @@ export interface ISales {
 }
 const salesSchema: Schema = new Schema<ISales>(
   {
+    status: { type: String },
+    orderStatus: { type: String },
     customer: { type: Schema.Types.ObjectId, ref: "customers" },
     saleDate: { type: String },
     supplier: { type: Schema.Types.ObjectId, ref: "vendors" },
     paymentMode: { type: String },
     paymentStatus: { type: String },
     address: { type: String },
-    // unit: { type: String },
     totalTax: { type: String, required: false },
     totalDiscount: { type: String, required: false },
     grandTotal: { type: Number, required: false },

@@ -8,7 +8,9 @@ export interface ISalesProduct {
   unit: string;
   price: number;
   discount: number;
+  discountPrice: number;
   tax: number;
+  taxPrice: number;
   total: number;
 }
 const salesProductSchema: Schema = new Schema<ISalesProduct>(

@@ -16,6 +16,7 @@ export async function getInvoiceForInward(po: any) {
       paymentStatus: 1,
       address: 1,
       companyName: 1,
+      createdAt:1
     }
   )
     // .populate({model:Vendors});

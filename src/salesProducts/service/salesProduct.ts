@@ -10,7 +10,6 @@ export async function addSalesProduct(data: ISalesProduct, salesOrder: any) {
       { $inc: { stock: -data.quantity } }
     );
     data.product = await Product.findOne({ productName: data.product });
-    console.log(data);
     
     const Data = await salesProduct.create(data);
     if (Data._id) {

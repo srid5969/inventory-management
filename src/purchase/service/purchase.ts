@@ -108,7 +108,6 @@ export async function importBulkPurchase(data: IPurchase[]) {
  * @return {}
  */
 export async function afterClickingTheSubmitButton(po: any) {
-  console.log(po);
   const data = await purchasedProducts.find({ po });
   
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
@@ -123,7 +122,6 @@ export async function afterClickingTheSubmitButton(po: any) {
     { _id: po },
     { $set: { completed: true, totalDiscount, totalTax, subTotal, grandTotal } }
   );
-  console.log(Data);
   
   return await Data;
 }

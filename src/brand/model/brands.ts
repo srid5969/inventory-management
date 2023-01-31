@@ -12,6 +12,7 @@ export const brandSchema: Schema = new Schema<IBrand>(
     brandName: { required: false, type: String,unique:true },
     brandImage: { required: false, type: String,unique:true },
     brandDescription: { required: false, type: String },
+    
     createDate: { type: Date, default: Date.now(), select: false },
   },
   {

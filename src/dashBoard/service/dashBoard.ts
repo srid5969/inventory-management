@@ -9,7 +9,7 @@ import sales from "../../sales/model/sales";
 //purchase count
 //sales count
 //recent products
-export async function dashBoard() {
+export async function dashBoard(date) {
   let Data: any = {};
   Data.customers = await customers.count();
   Data.suppliers = await vendor.count();
