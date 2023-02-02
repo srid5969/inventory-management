@@ -13,6 +13,7 @@ export function listAllVendors(): Promise<IVendor[]> {
           contactPersonName:1,
           vendorEmail: 1,
           vendorContactNumber: 1,
+          vendorName:1
         }
       );
       resolve(data);

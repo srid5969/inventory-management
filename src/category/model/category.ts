@@ -15,10 +15,12 @@ export const categorySchema: Schema = new Schema<ICategory>(
     categoryName: {
       type: String,
       unique: true,
+      required: true,
     },
     categoryCode: {
       type: String,
       unique: true,
+      required: true,
     },
     createDate: { type: Date, default: Date.now() },
   },

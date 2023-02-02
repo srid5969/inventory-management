@@ -16,19 +16,19 @@ export interface IProduct extends Document {
 export const productSchema: Schema = new Schema<IProduct>(
   {
     productName: { type: String, required: true, index:true,unique: true },
-    category: { required: false, type: Schema.Types.Mixed, ref: "categories" },
-    brand: { required: false, type: Schema.Types.Mixed, ref: "brands" },
+    category: { required: true, type: Schema.Types.Mixed, ref: "categories" },
+    brand: { required: true, type: Schema.Types.Mixed, ref: "brands" },
     uniqueId: { type: String, required: false},
-    sku: { type: String, required: false, unique: true },
+    sku: { type: String, required: true, unique: true },
     description: { type: String, required: false },
-    status: { type: String, required: false },
+    status: { type: String, required: true },
     stock: { type: Number, required: false, default: 0 },
-    productImage: { type: String, required: false, unique: true },
+    productImage: { type: String, required: false},
     barCode: { 
       type: String, required: false, 
       // unique: true 
     },
-    createDate: { type: Date, default: Date.now(), select: false },
+    createDate: { type: Date, default: Date.now(), select: false, required: false },
   },
   {
     versionKey: false,

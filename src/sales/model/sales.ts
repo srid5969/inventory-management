@@ -8,8 +8,8 @@ export interface ISales {
   supplier: any; //vendor id
   paymentMode: string;
   paymentStatus: string;
-  status:string
-  orderStatus:string
+  status: string;
+  orderStatus: string;
   address: string;
   totalTax: string;
   subTotal: string;
@@ -18,30 +18,30 @@ export interface ISales {
   description: string;
   postedBy: any | ObjectId;
   completed: boolean;
-  date:Date
-  createdAt:string
+  date: Date;
+  createdAt: string;
 }
 const salesSchema: Schema = new Schema<ISales>(
   {
-    status: { type: String },
-    orderStatus: { type: String },
-    customer: { type: Schema.Types.ObjectId, ref: "customers" },
-    saleDate: { type: String },
-    supplier: { type: Schema.Types.ObjectId, ref: "vendors" },
-    paymentMode: { type: String },
-    paymentStatus: { type: String },
-    address: { type: String },
+    status: { type: String, required: true },
+    orderStatus: { type: String, required: true },
+    customer: { type: Schema.Types.ObjectId, ref: "customers", required: true },
+    saleDate: { type: String, required: true },
+    supplier: { type: Schema.Types.ObjectId, ref: "vendors", required: true },
+    paymentMode: { type: String, required: true },
+    paymentStatus: { type: String, required: true },
+    address: { type: String, required: true },
     totalTax: { type: String, required: false },
     totalDiscount: { type: String, required: false },
     grandTotal: { type: Number, required: false },
-    description: { type: String, required: false ,default:"default value"},
+    description: { type: String, required: false, default: "default value" },
     completed: {
       type: Boolean,
       default: false,
     },
     postedBy: { type: ObjectId, ref: "users" },
-    date:{type:Date,default:Date.now()},
-    createdAt:{type:String,default:Date.now().toString()}
+    date: { type: Date, default: Date.now() },
+    createdAt: { type: String, default: Date.now().toString() },
   },
   {
     versionKey: false,

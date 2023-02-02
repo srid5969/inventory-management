@@ -1,9 +1,20 @@
 import salesProduct, { ISalesProduct } from "../model/salesProduct";
 import purchasedProducts from "../../purchasedProducts/model/purchasedProducts";
 import Product from "../../Product/model/product";
+import Sales from "../../sales/model/sales";
 
 export async function addSalesProduct(data: ISalesProduct, salesOrder: any) {
   return new Promise<any>(async (resolve, reject) => {
+    
+    var discount = data.discount / 100;
+    discount = data.price * discount;
+    var price = data.price - discount;
+    var tax = data.tax / 100;
+    tax = data.price * tax;
+    price = price + tax;
+    var total = price * data.quantity;
+    data.total = total;
+
     data.salesOrder = salesOrder;
     await Product.updateOne(
       { productName: data.product },

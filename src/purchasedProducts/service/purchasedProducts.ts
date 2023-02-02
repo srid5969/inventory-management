@@ -23,12 +23,14 @@ export async function addProducts(data: any, po: any) {
   // 18
   // 10
 
-  // data.discount = (data.price * 100) / data.discount;
-  // data.price = data.price - data.discount;
-  // data.tax = (data.price * 100) / data.tax;
-  // data.price = data.price + data.tax;
-  // data.total = data.price * data.quantity;
-  // data.total *= data.quantity;
+  var discount = data.discount / 100;
+  discount = data.price * discount;
+  var price = data.price - discount;
+  var tax = data.tax / 100;
+  tax = data.price * tax;
+  price = price + tax;
+  var total = price * data.quantity;
+  data.total = total;
   data.product = await (
     await product.findOne({ productName: data.productName })
   )._id;
