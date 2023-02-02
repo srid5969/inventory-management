@@ -59,6 +59,10 @@ export async function dashBoard() {
       Data.totalPurchaseQuantity += data.quantity;
       Data.totalPurchasePrice += data.total;
     });
+   var topSellingProduct=await SalesProducts.find({}) 
+   topSellingProduct.map(data=>{
+    
+   })
     return Data;
   } catch (error) {
     return error;

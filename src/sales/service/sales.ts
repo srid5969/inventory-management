@@ -58,6 +58,6 @@ export async function getInvoiceForOutward(salesOrder: any) {
   const products = await salesProduct.find({ salesOrder });
   let Data: any = {};
   Data.data = data;
-  Data.products = products;
+  Data.productsDetails = products;
   return Data;
 }

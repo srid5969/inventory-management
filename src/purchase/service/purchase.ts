@@ -92,6 +92,7 @@ export async function getPurchaseDetailsById(_id: any): Promise<any> {
         totalTax: 1,
         totalDiscount: 1,
         grandTotal: 1,
+        date: 1,
       }
     )
     .populate({ path: "companyName", transform: (doc) => doc.companyName })
