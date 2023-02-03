@@ -22,12 +22,17 @@ export async function addProducts(data: any, po: any) {
   // 100
   // 18
   // 10
+//price 1000
 
-  var discount = data.discount / 100;
-  discount = data.price * discount;
-  var price = data.price - discount;
-  var tax = data.tax / 100;
-  tax = data.price * tax;
+  var discount = data.discount / 100;//10
+  discount = data.price * discount;//0.1*1000=100
+  console.log("discount:",discount);
+  
+  var price = data.price - discount;//1000-100=900
+  var tax = data.tax / 100;//15/100=.15
+  tax = price * tax;//900*.15
+  console.log("tax:",tax);
+  
   price = price + tax;
   var total = price * data.quantity;
   data.total = total;

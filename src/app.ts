@@ -17,6 +17,7 @@ import purchasedProducts from "./purchasedProducts/controller/purchasedProducts"
 import sales from "./sales/controller/sales";
 import salesProduct from "./salesProducts/controller/salesProduct";
 import dashBoard from "./dashBoard/controller/dashBoard";
+import { logResponseBody } from "./common/middleware/end.middleware";
 
 
 const port: number = 8080;
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(auth);
+app.use(logResponseBody);
 app.use("/api/user", user);
 app.use("/api/", manufacturers);
 app.use("/api/", brands);

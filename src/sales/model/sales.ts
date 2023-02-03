@@ -23,8 +23,8 @@ export interface ISales {
 }
 const salesSchema: Schema = new Schema<ISales>(
   {
-    status: { type: String, required: true },
-    orderStatus: { type: String, required: true },
+    status: { type: String, required: false },
+    orderStatus: { type: String, required: false },
     customer: { type: Schema.Types.ObjectId, ref: "customers", required: true },
     saleDate: { type: String, required: true },
     supplier: { type: Schema.Types.ObjectId, ref: "vendors", required: true },

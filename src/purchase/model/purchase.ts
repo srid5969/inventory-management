@@ -42,7 +42,7 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
 
     address: { type: String ,required: true },
     paymentMode: { type: String ,required: true },
-    status: { type: String ,required: true },
+    status: { type: String ,required: false },
     orderStatus: { type: String ,required: false },
     paymentStatus: { type: String ,required: true },
     totalTax: { type: String, required: false },

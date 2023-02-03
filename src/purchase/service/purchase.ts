@@ -13,9 +13,12 @@ export async function addPurchase(data: IPurchase): Promise<any> {
     )._id;
 
     const Data: any = await purchase.create(data);
+    console.log(Data);
 
     return await { id: Data._id };
   } catch (error) {
+    console.log(error);
+
     return error;
   }
 }
@@ -34,7 +37,7 @@ export async function purchaseList(): Promise<any[]> {
         paymentMode: 1,
         paymentStatus: 1,
         completed: 1,
-        // productDetails: 1,
+        date: 1,
         totalTax: 1,
         totalDiscount: 1,
         grandTotal: 1,
@@ -110,9 +113,10 @@ export async function importBulkPurchase(data: IPurchase[]) {
  */
 export async function afterClickingTheSubmitButton(po: any) {
   const data = await purchasedProducts.find({ po });
-  
+
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);
-  const totalTax = await productCalculations.calculateTotalTax(data);
+  var totalTax = await productCalculations.calculateTotalTax(data);
+
   const subTotal = await productCalculations.calculateSubTotal(data);
   const grandTotal = await productCalculations.grandTotal(
     totalTax,
@@ -123,6 +127,6 @@ export async function afterClickingTheSubmitButton(po: any) {
     { _id: po },
     { $set: { completed: true, totalDiscount, totalTax, subTotal, grandTotal } }
   );
-  
+
   return await Data;
 }

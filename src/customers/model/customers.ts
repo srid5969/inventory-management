@@ -18,7 +18,7 @@ const customersSchema: Schema = new Schema<ICustomer>(
     email: { type: String ,unique:true},
     phone: { type: Number ,unique:true},
     type: { type: String },
-    GSTno: { type: String ,unique:true},
+    GSTno: { type: String ,required:false},
     address: { type: String },
     postedBy: { type: ObjectId, ref: "users" },
   },
