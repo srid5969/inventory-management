@@ -22,6 +22,8 @@ export async function listAllSales() {
     .populate({ path: "supplier" })
     .populate({ path: "customer" });
 }
+listAllSales().then(da=>console.log(da));
+
 export async function addSalesPre(data: ISales) {
   data.customer = await (await customers.findOne({ name: data.customer }))._id;
   data.supplier = await (
@@ -60,4 +62,32 @@ export async function getInvoiceForOutward(salesOrder: any) {
   Data.data = data;
   Data.productsDetails = products;
   return Data;
+}
+
+export async function getSalesDetails(_id: any) {
+  const data=await sales
+    .findOne(
+      { _id },
+      {
+        _id: 0,
+        id: "$_id",
+        orderStatus:1,
+        supplier: 1,
+        address: 1,
+        paymentMode: 1,
+        paymentStatus: 1,
+        description:1,
+        totalTax: 1,
+        totalDiscount: 1,
+        grandTotal: 1,
+        saleDate: 1,
+      }
+    )
+    .populate({ path: "customer", transform: (doc) => doc.name })
+    .populate({ path: "supplier", transform: (doc) => doc.companyName });
+    data.saleDate=data.saleDate.toString().substring(0,10)
+    return data
+}
+export async function updateSalesOrderStatus(){
+  
 }

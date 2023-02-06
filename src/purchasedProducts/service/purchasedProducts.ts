@@ -1,8 +1,11 @@
 import product from "../../Product/model/product";
 import purchase from "../../purchase/model/purchase";
 import purchasedProducts from "../model/purchasedProducts";
+import trigger from "../../common/triggers/purchaseProductsCalculation/products";
+
 
 export async function addProducts(data: any, po: any) {
+  trigger.emit("purchaseProductCalculation",po)
   const _Data = await purchase.findOne({ _id: po }, { purchaseOrderNumber: 1 });
   // data.total = (data.price * data.quantity)-;
 

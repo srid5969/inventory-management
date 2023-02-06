@@ -43,10 +43,11 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
     address: { type: String ,required: true },
     paymentMode: { type: String ,required: true },
     status: { type: String ,required: false },
-    orderStatus: { type: String ,required: false },
+    orderStatus: { type: String ,required: false,default:null },
     paymentStatus: { type: String ,required: true },
     totalTax: { type: String, required: false },
     totalDiscount: { type: String, required: false },
+    subTotal: { type: String, required: false },
     grandTotal: { type: Number, required: false },
     description: { type: String, required: false },
     completed: {

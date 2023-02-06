@@ -5,6 +5,7 @@ import {
   afterClickingTheSubmitButton,
   getInvoiceForOutward,
   listAllSales,
+  getSalesDetails,
 } from "../service/sales";
 
 router.post("/sale", async (req: Request, res: Response) => {
@@ -25,6 +26,11 @@ router.get("/sales", async (req: Request, res: Response) => {
 });
 router.get("/outward/invoice", async (req: Request, res: Response) => {
   getInvoiceForOutward(req.query.id)
+    .then((data) => res.send(data))
+    .catch((data) => res.send(data));
+});
+router.get("/sale", async (req: Request, res: Response) => {
+  getSalesDetails(req.query.id)
     .then((data) => res.send(data))
     .catch((data) => res.send(data));
 });

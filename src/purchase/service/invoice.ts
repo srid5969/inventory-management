@@ -12,6 +12,8 @@ export async function getInvoiceForInward(po: any) {
       grandTotal: 1,
       totalDiscount: 1,
       totalTax: 1,
+      subTotal: 1,
+
       paymentMode: 1,
       paymentStatus: 1,
       address: 1,

@@ -2,15 +2,21 @@ import salesProduct, { ISalesProduct } from "../model/salesProduct";
 import purchasedProducts from "../../purchasedProducts/model/purchasedProducts";
 import Product from "../../Product/model/product";
 import Sales from "../../sales/model/sales";
+import trigger from "../../common/triggers/salesProductsCalculations/sales";
+
 
 export async function addSalesProduct(data: ISalesProduct, salesOrder: any) {
+  trigger.emit("salesProductCalculation",salesOrder)
   return new Promise<any>(async (resolve, reject) => {
-    
-    var discount = data.discount / 100;
-    discount = data.price * discount;
-    var price = data.price - discount;
-    var tax = data.tax / 100;
-    tax = data.price * tax;
+    var discount = data.discount / 100; //10
+    discount = data.price * discount; //0.1*1000=100
+    console.log("discount:", discount);
+
+    var price = data.price - discount; //1000-100=900
+    var tax = data.tax / 100; //15/100=.15
+    tax = price * tax; //900*.15
+    console.log("tax:", tax);
+
     price = price + tax;
     var total = price * data.quantity;
     data.total = total;
@@ -21,7 +27,7 @@ export async function addSalesProduct(data: ISalesProduct, salesOrder: any) {
       { $inc: { stock: -data.quantity } }
     );
     data.product = await Product.findOne({ productName: data.product });
-    
+
     const Data = await salesProduct.create(data);
     if (Data._id) {
       return resolve(Data);

@@ -59,10 +59,42 @@ export async function dashBoard() {
       Data.totalPurchaseQuantity += data.quantity;
       Data.totalPurchasePrice += data.total;
     });
-   var topSellingProduct=await SalesProducts.find({}) 
-   topSellingProduct.map(data=>{
+    var topSellingProduct = await SalesProducts.aggregate([
+      {
+        $group: {
+          _id: "$product",
+          totalQuantity: {
+            $sum: "$quantity",
+          },
+        },
+      },
+      {
+        $sort: {
+          totalQuantity: -1,
+        },
+      },
+      {
+        $limit: 5,
+      },
+      {
+        $lookup: {
+          from: "products",
+          localField: "_id",
+          foreignField: "_id",
+          as: "result",
+        },
+      },
+      // {
+      //   $project:{
+      //     products:"result"
+      //   }
+      // }
+    ]);
+    // console.log(topSellingProduct);
+    //Purchase Order Report
     
-   })
+    
+    Data.topSellingProduct=topSellingProduct
     return Data;
   } catch (error) {
     return error;

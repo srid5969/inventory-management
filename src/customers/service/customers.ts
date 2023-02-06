@@ -10,6 +10,7 @@ export function listAllCustomers(): Promise<ICustomer[]> {
             id: "$_id",
             name: 1,
             email: 1,
+            GSTno: 1,
             phone: 1,
             type: 1,
           },

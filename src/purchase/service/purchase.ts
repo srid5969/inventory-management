@@ -80,26 +80,33 @@ export async function cancel_or_delete_Purchase(_id: any): Promise<any> {
   return await purchase.deleteOne({ _id });
 }
 export async function getPurchaseDetailsById(_id: any): Promise<any> {
-  return await purchase
+  const data:any=await purchase
     .findOne(
       { _id },
       {
         _id: 0,
         id: "$_id",
         purchaseOrderNumber: 1,
+        orderStatus: 1,
+
         address: 1,
         paymentMode: 1,
         paymentStatus: 1,
         products: 1,
         type: 1,
         totalTax: 1,
+        subTotal: 1,
         totalDiscount: 1,
         grandTotal: 1,
         date: 1,
       }
     )
-    .populate({ path: "companyName", transform: (doc) => doc.companyName })
-    .populate({ path: "products" });
+    .populate({ path: "companyName", transform: (doc) => doc.companyName });
+    data.date=await data.date.toString()//.substring(0,8)
+  // .populate({ path: "products" });
+
+  
+  return data
 }
 export async function importBulkPurchase(data: IPurchase[]) {
   return await purchase.insertMany(data);
@@ -111,7 +118,7 @@ export async function importBulkPurchase(data: IPurchase[]) {
  * @param {string} purchaseOrderNumber
  * @return {}
  */
-export async function afterClickingTheSubmitButton(po: any) {
+export async function afterClickingTheSubmitButton(po: any):Promise<any> {
   const data = await purchasedProducts.find({ po });
 
   const totalDiscount = await productCalculations.calculateTotalDiscount(data);

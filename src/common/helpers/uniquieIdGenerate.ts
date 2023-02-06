@@ -9,6 +9,6 @@ export async function generateUniqueId(_id: any) {
 function unique_id() {
   var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   var id = letters.charAt(Math.floor(Math.random() * letters.length));
-  id += Date.now().toString().slice(-16);
+  id += Date.now().toString().slice(-10);
   return id;
 }
