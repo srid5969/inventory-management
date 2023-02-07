@@ -13,11 +13,9 @@ export async function addPurchase(data: IPurchase): Promise<any> {
     )._id;
 
     const Data: any = await purchase.create(data);
-    console.log(Data);
 
     return await { id: Data._id };
   } catch (error) {
-    console.log(error);
 
     return error;
   }

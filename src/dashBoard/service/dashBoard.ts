@@ -90,14 +90,23 @@ export async function dashBoard() {
       //   }
       // }
     ]);
-    // console.log(topSellingProduct);
-    //Purchase Order Report
-    
+    // //purchase success order count
+    Data.deliveredPurchases=await purchase.countDocuments({orderStatus:""})
+    // //purchase failed order count
+    Data.notDeliveredPurchases=await purchase.countDocuments({orderStatus:{$ne:"Delivered"}})
+    // //sales success order count
+    Data.deliveredSales=await sales.countDocuments({orderStatus:""})
+    // //sales failed order count
+    Data.notDeliveredSales=await sales.countDocuments({orderStatus:{$ne:"Delivered"}})
+    Data.totalSuccessOrders=Data.deliveredPurchases+Data.deliveredSales
+    Data.totalFailedOrders=Data.notDeliveredPurchases+Data.notDeliveredSales
     
     Data.topSellingProduct=topSellingProduct
+
+
+    
     return Data;
   } catch (error) {
     return error;
   }
 }
-// dashBoard().then(data=>console.log(data))

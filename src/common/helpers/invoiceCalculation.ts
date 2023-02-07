@@ -8,14 +8,11 @@ export async function calculateTotalTax(data: any[]) {
     discount = discount * value.quantity;
     t = value.tax / 100;
     discount = (value.price*value.quantity) - discount;
-    console.log("discount:", discount);
     let tax = discount * t;
-    console.log("tax:",tax);
     
     // tax = tax * value.quantity;
     return acc + tax;
   }, 0);
-  console.log(totalTax);
   
   return totalTax;
 }

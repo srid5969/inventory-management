@@ -22,7 +22,6 @@ export async function listAllSales() {
     .populate({ path: "supplier" })
     .populate({ path: "customer" });
 }
-listAllSales().then(da=>console.log(da));
 
 export async function addSalesPre(data: ISales) {
   data.customer = await (await customers.findOne({ name: data.customer }))._id;
@@ -88,6 +87,9 @@ export async function getSalesDetails(_id: any) {
     data.saleDate=data.saleDate.toString().substring(0,10)
     return data
 }
-export async function updateSalesOrderStatus(){
-  
+export async function editSalesById(
+  _id: any,
+  body: ISales
+): Promise<any> {
+  return await sales.findByIdAndUpdate(_id, body);
 }

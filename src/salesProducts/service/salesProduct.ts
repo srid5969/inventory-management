@@ -10,12 +10,10 @@ export async function addSalesProduct(data: ISalesProduct, salesOrder: any) {
   return new Promise<any>(async (resolve, reject) => {
     var discount = data.discount / 100; //10
     discount = data.price * discount; //0.1*1000=100
-    console.log("discount:", discount);
 
     var price = data.price - discount; //1000-100=900
     var tax = data.tax / 100; //15/100=.15
     tax = price * tax; //900*.15
-    console.log("tax:", tax);
 
     price = price + tax;
     var total = price * data.quantity;
