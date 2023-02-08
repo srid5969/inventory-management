@@ -3,3 +3,4 @@ dist
 .vscode
 .idea
 logs
+package-lock.json

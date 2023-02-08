@@ -72,7 +72,7 @@ export async function editPurchaseById(
   _id: any,
   body: IPurchase
 ): Promise<any> {
-  return await purchase.findByIdAndUpdate(_id, body);
+  return await purchase.findByIdAndUpdate({_id:_id}, {body});
 }
 export async function cancel_or_delete_Purchase(_id: any): Promise<any> {
   return await purchase.deleteOne({ _id });
