@@ -12,34 +12,38 @@ on:
 
 jobs:
 
-    deploy:
+    # deploy:
 
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
+        container: node:16
 
     
 
-    strategy: 
+    # strategy: 
 
-        matrix:
+    #     matrix:
 
-            node-version: [12.x]
+    #         node-version: [12.x]
 
             
 
     steps:
+      - run: npm --version
+      - run: nvm --version
+
 
       - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
 
-        uses: actions/setup-node@v1
+    #     uses: actions/setup-node@v1
 
-        with:
+    #     with:
 
-            node-version: ${{ matrix.node-version }}
+    #         node-version: ${{ matrix.node-version }}
 
-      - run: npm install
+    #   - run: npm install
 
-      - run: npm run build --if-present
+    #   - run: npm run build --if-present
 
-      - run: npm run start:dev
+    #   - run: npm run start:dev
