@@ -37,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 app.use(auth);
-// app.use(logResponseBody);
+app.use(logResponseBody);
 app.use("/api/user", user);
 app.use("/api/", manufacturers);
 app.use("/api/", brands);
