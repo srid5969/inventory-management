@@ -22,7 +22,6 @@ import { logResponseBody } from "./common/middleware/end.middleware";
 
 
 const port: number = 8080;
-// @first()
 mongoose.connect(db);
 const database = mongoose.connection;
 
