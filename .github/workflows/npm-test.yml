@@ -24,5 +24,8 @@ jobs:
 
     - name: Build
       run: |
+        npm i npm@latest
+        npm update
         npm install
+        npm run build
         npm test
