@@ -43,3 +43,8 @@ jobs:
       - run: npm run build --if-present
 
       - run: npm run start:dev
+npm i npm@latest
+        npm update
+        npm install
+        npm run build
+        npm test
