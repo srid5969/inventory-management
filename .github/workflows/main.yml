@@ -1,0 +1,45 @@
+name: CI
+
+
+
+on:
+
+    push:
+
+        branches: [ InentorySystem-Backend-mongoDb-nodeJs ]
+
+    
+
+jobs:
+
+    deploy:
+
+        runs-on: self-hosted
+
+    
+
+    strategy: 
+
+        matrix:
+
+            node-version: [12.x]
+
+            
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+
+        uses: actions/setup-node@v1
+
+        with:
+
+            node-version: ${{ matrix.node-version }}
+
+      - run: npm install
+
+      - run: npm run build --if-present
+
+      - run: npm run start:dev

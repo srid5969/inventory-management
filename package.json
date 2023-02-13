@@ -11,7 +11,7 @@
     "stop:prod": "pm2  stop ./dist/app.js",
     "restart:prod": "pm2  restart ./dist/app.js --watch",
     "monit:prod": "pm2  monit ./dist/app.js --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
