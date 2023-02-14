@@ -20,10 +20,12 @@ export function addCategory(data: ICategory): Promise<any> {
     }
   });
 }
-export function editById(_id: any, data: ICategory): Promise<any> {
+export function editCategoryById(_id: any, data: ICategory): Promise<any> {
+  
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await category.findOneAndUpdate({ _id }, { data }));
+      const result=await category.findByIdAndUpdate({ _id:_id },  data )
+      resolve(result);
     } catch (error) {
       reject(error);
     }

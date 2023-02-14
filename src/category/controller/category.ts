@@ -1,7 +1,7 @@
 import {
   addCategory,
   deleteById,
-  editById,
+  editCategoryById,
   getById,
   listAllCategory,
 } from "../service/category";
@@ -29,7 +29,9 @@ router.delete("/category/", async (req: Request, res: Response) => {
     .catch((err) => res.json(err));
 });
 router.patch("/category/", async (req: Request, res: Response) => {
-  editById(req.query.id, req.body)
+  // console.log(req.body);
+  
+  editCategoryById(req.query.id, req.body)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
