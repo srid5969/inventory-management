@@ -18,6 +18,8 @@ import sales from "./sales/controller/sales";
 import salesProduct from "./salesProducts/controller/salesProduct";
 import dashBoard from "./dashBoard/controller/dashBoard";
 import { logResponseBody } from "./common/middleware/end.middleware";
+import report from "./report/controller/report";
+
 
 
 
@@ -36,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
 app.use(auth);
-// app.use(logResponseBody);
+app.use(logResponseBody);
 app.use("/api/user", user);
 app.use("/api/", manufacturers);
 app.use("/api/", brands);
@@ -49,6 +51,8 @@ app.use("/api/", purchasedProducts);
 app.use("/api/", sales);
 app.use("/api/", salesProduct);
 app.use("/api/", dashBoard);
+app.use("/api/", report);
+
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
