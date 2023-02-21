@@ -70,8 +70,14 @@ export async function draftPurchaseList(): Promise<any[]> {
 }
 export async function editPurchaseById(
   _id: any,
-  body: IPurchase
+  body: any
 ): Promise<any> {
+  if(body.date){
+    var day=new Date('2023-02-17')
+    body.date=(day.toISOString());
+  }
+  console.log(body.date);
+  
   return await purchase.findByIdAndUpdate({_id:_id}, {body});
 }
 export async function cancel_or_delete_Purchase(_id: any): Promise<any> {
