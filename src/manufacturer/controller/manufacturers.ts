@@ -18,17 +18,17 @@ router.post("/manufacturer", async (req: Request, res: Response) => {
     .catch((err) => res.status(err.status || 500).json(err));
 });
 router.patch("/manufacturer/", async (req: Request, res: Response) => {
-  editManufacturer(req.params.id, req.body)
+  editManufacturer(req.query.id, req.body)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
 router.get("/manufacturer/", async (req: Request, res: Response) => {
-  getAManufacturer(req.params.id)
+  getAManufacturer(req.query.id)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
 router.delete("/manufacturer/", async (req: Request, res: Response) => {
-  deleteManufacturer(req.params.id)
+  deleteManufacturer(req.query.id)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
