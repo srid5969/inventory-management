@@ -22,7 +22,7 @@ export function addBrand(data: IBrand): Promise<any> {
 export function editById(_id: any, data: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await brands.findOneAndUpdate({ _id },  data ));
+      resolve(await brands.updateOne({ _id },  data ));
     } catch (error) {
       reject(error);
     }

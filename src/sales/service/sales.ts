@@ -91,5 +91,5 @@ export async function editSalesById(
   _id: any,
   body: ISales
 ): Promise<any> {
-  return await sales.findByIdAndUpdate({_id:_id}, body);
+  return await sales.updateOne({_id}, body);
 }

@@ -24,7 +24,7 @@ export function editCategoryById(_id: any, data: ICategory): Promise<any> {
   
   return new Promise<any>(async (resolve, reject) => {
     try {
-      const result=await category.findByIdAndUpdate({ _id:_id },  data )
+      const result=await category.updateOne({ _id },  data )
       resolve(result);
     } catch (error) {
       reject(error);

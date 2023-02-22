@@ -30,7 +30,7 @@ return Data.save()
 export function editById(_id: any, data: any): Promise<any> {
   return new Promise<any>(async (resolve, reject) => {
     try {
-      resolve(await ventor.findOneAndUpdate(_id, data));
+      resolve(await ventor.updateOne({_id}, data));
     } catch (error) {
       reject(error);
     }

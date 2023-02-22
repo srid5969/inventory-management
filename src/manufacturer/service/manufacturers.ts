@@ -21,14 +21,15 @@ export async function getAllManufacturersDetail(): Promise<IManufacturer[]> {
   );
 }
 export async function editManufacturer(
-  id: any,
+  _id: any,
   body: IManufacturer
 ): Promise<any> {
-  return await Model.findByIdAndUpdate({ id }, { body });
+ const data=await Model.updateOne(  {_id} ,  body );
+ return Promise.resolve(data)
 }
-export async function deleteManufacturer(id: any): Promise<any> {
-  return await Model.deleteOne({ id });
+export async function deleteManufacturer(_id: any): Promise<any> {
+  return await Model.deleteOne({ _id });
 }
-export async function getAManufacturer(id: any): Promise<any> {
-  return await Model.findOne({ id });
+export async function getAManufacturer(_id: any): Promise<any> {
+  return await Model.findOne({ _id });
 }

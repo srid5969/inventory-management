@@ -78,7 +78,7 @@ export async function editPurchaseById(
   }
   console.log(body.date);
   
-  return await purchase.findByIdAndUpdate({_id:_id}, {body});
+  return await purchase.updateOne({_id}, body);
 }
 export async function cancel_or_delete_Purchase(_id: any): Promise<any> {
   return await purchase.deleteOne({ _id });

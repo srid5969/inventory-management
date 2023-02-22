@@ -54,7 +54,7 @@ export async function getAllProduct(): Promise<IProduct[]> {
     .populate({ path: "category", transform: (doc) => doc.categoryName });
 }
 export async function editProductById(id: any, body: IProduct): Promise<any> {
-  return await product.findByIdAndUpdate({ id }, { body });
+  return await product.updateOne({ id },  body );
 }
 export async function deleteAProduct(id: any): Promise<any> {
   return await product.deleteOne({ id });
