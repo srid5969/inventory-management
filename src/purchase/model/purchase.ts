@@ -11,10 +11,10 @@ export interface IPurchase {
   completed: boolean;
   status: string;
   orderStatus: string;
-  totalTax: string;
-  subTotal: string;
+  totalTax: number;
+  subTotal: number;
   description: string;
-  totalDiscount: string;
+  totalDiscount: number;
   grandTotal: number;
   date: Date;
   createdAt: string;
@@ -45,9 +45,9 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
     status: { type: String ,required: false },
     orderStatus: { type: String ,required: false,default:null },
     paymentStatus: { type: String ,required: true },
-    totalTax: { type: String, required: false },
-    totalDiscount: { type: String, required: false },
-    subTotal: { type: String, required: false },
+    totalTax: { type: Number, required: false },
+    totalDiscount: { type: Number, required: false },
+    subTotal: { type: Number, required: false },
     grandTotal: { type: Number, required: false },
     description: { type: String, required: false },
     completed: {
@@ -63,10 +63,4 @@ const purchaseSchema: Schema = new Schema<IPurchase>(
 );
 const Purchase = model<IPurchase>("purchases", purchaseSchema);
 export default Purchase;
-// export async function getInvoiceForInward(po: string) {
-//   let Data: any = {};
-//   let data: any = await Purchase.findOne({ _id: po });
-//   let data1 = await PurchasedProducts.find({ po });
-//   Data.data = data;
-//   Data.productsDetails = data1;
-// }
+

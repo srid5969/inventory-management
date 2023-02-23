@@ -53,11 +53,11 @@ export async function getAllProduct(): Promise<IProduct[]> {
     .populate({ path: "brand", transform: (doc) => doc.brandName })
     .populate({ path: "category", transform: (doc) => doc.categoryName });
 }
-export async function editProductById(id: any, body: IProduct): Promise<any> {
-  return await product.updateOne({ id },  body );
+export async function editProductById(_id: any, body: IProduct): Promise<any> {
+  return await product.updateOne({ _id },  body );
 }
-export async function deleteAProduct(id: any): Promise<any> {
-  return await product.deleteOne({ id });
+export async function deleteAProduct(_id: any): Promise<any> {
+  return await product.deleteOne({ _id });
 }
 export async function getAProduct(_id: any): Promise<any> {
   return await product
