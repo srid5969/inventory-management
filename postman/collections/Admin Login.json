@@ -1,0 +1,1768 @@
+{
+	"info": {
+		"_postman_id": "5cc348df-e518-4401-96a4-6860e5bfc199",
+		"name": "Admin Login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "24349532-5cc348df-e518-4401-96a4-6860e5bfc199"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f04af822-d5f0-4207-9992-f77a2dbdfe8f",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a1c27d0-2967-42af-9687-2ba3a52137a5",
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0fedaf44-09a0-4973-8b0f-d4770920e206",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Admin\",\n    \"password\": \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup",
+					"id": "79d17c17-1695-4037-9a75-46f077eb391a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Admin\",\n    \"password\": \"1234\",\n    \"role\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/user/signup",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "534780a6-71b2-4f5e-8b7d-812a8cf9e4ae"
+		},
+		{
+			"name": "brand",
+			"item": [
+				{
+					"name": "listAllBrands",
+					"id": "bf331b3e-8b80-40f2-bf2b-b0c44226a562",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/brands",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBrandsById",
+					"id": "0503e2c1-dfa8-40e5-b028-cdcc9791e57e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/brand?id={{brandid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"brand"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{brandid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditBrandsById",
+					"id": "4fc12df4-028f-494b-be4d-b2c2dcd46e56",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brandName\": \"Samsung\",\n    \"brandImage\": \"src/j/sd\",\n    \"brandDescription\": \"USA product\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/brand?id={{brandid}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"brand"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{brandid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Band",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9204d6b2-c55c-49fb-8768-a7259a3e4dd8",
+								"exec": [
+									"pm.environment.set(\"brandid\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8a80f323-463f-43f6-b08e-b3f0e3f8d57f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brandName\": \"Samsung\",\n    \"brandImage\": \"src/j/sd\",\n    \"brandDescription\": \"USA product\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/brand",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"brand"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "05dcd3fd-e449-4977-8012-31afa5c961cf"
+		},
+		{
+			"name": "category",
+			"item": [
+				{
+					"name": "listAllCategories",
+					"id": "84e642ca-5614-449a-812a-7159c008c6dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCategoryById",
+					"id": "6c13ecdd-51c7-4c4a-a4f7-5c17950d2324",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/category?id={{categoryId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{categoryId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCategory",
+					"id": "6af9ef83-c347-44db-beb5-a28cde937316",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoryName\":\"Watch\",\n    \"categoryCode\":\"W765JBH\",\n    \"categoryDescription\":\"Something about Watch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addCategory Copy",
+					"id": "4a97fc15-1e5a-464f-8534-6ea4b37408ed",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"categoryName\":\"Watch\",\n    \"categoryCode\":\"W765JBH\",\n    \"categoryDescription\":\"Something about Watch\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/category?id={{categoryId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"category"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{categoryId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "04e10cc9-3522-4830-a3f3-9b2719a13838"
+		},
+		{
+			"name": "customers",
+			"item": [
+				{
+					"name": "ListAllCustomers",
+					"id": "c8c2acf7-0858-4ddc-b064-f7774f524c93",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/customers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCustomerById",
+					"id": "aa14743c-92cc-46a6-b76a-7ab6bde3b685",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/customer?id={{categoryId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{categoryId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditCustomers",
+					"id": "802e5ab7-714c-4a43-8e6d-3b61767e423c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\",\n    \"address\":\"chennai\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/customer?id=63dcb07a23ecd6fc850bf96e",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63dcb07a23ecd6fc850bf96e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostCustomers",
+					"id": "56fc859c-ecab-4d91-b044-05d8cef3e40c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\",\n    \"address\":\"chennai\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/customer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "65aae531-9b51-4efc-bd43-6d137c408d0b"
+		},
+		{
+			"name": "dashboard",
+			"item": [
+				{
+					"name": "DashBoard",
+					"id": "6cc99c7c-29a0-440a-91a8-f1b4d05340e0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/dashboard",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"dashboard"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "acd1fcf7-7a74-4ba2-9494-4eec45b2cce3"
+		},
+		{
+			"name": "manufacturer",
+			"item": [
+				{
+					"name": "listAllManuFacturers",
+					"id": "fd4b6efb-5d51-4398-976c-0b137cf0b65b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/manufacturers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"manufacturers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetManufacturerById",
+					"id": "c3fd8d67-9cf3-4d1c-b9cf-6320def8012c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/manufacturer?id={{manufacturerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"manufacturer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{manufacturerId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listAllManuFacturers Copy",
+					"id": "f1dd75bd-e5d5-4c11-bc8b-63a6249762b0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyName\": \" Nestle Holdings Limitted40\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/manufacturer?id={{manufacturerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"manufacturer"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{manufacturerId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostManufacturer",
+					"id": "b89e42db-68c0-4959-ab80-2c7e17c40c5a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyName\":\"Samsung\",\n    \"location\":\"USA\",\n    \"phone\":45634567567869,\n    \"email\":\"sg@info.com\",\n    \"website\":\"www.sg.com\",\n    \"establishment\":\"1777\",\n    \"brand\":\"63bbba2c0931f31b49d9d6d0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/manufacturer",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"manufacturer"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "fc37ec86-f9a1-447b-9e46-7bb98d8adaba"
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "PostProduct",
+					"id": "2472cf2f-4c04-4324-aa07-9fb675a54061",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productName\": \"Testing triggers15\",\n    \"category\": \"Watch\",\n    \"brand\": \"Samsung\",\n    \"sku\": \"20001\",\n    \"description\": \"Smart Watch\",\n    \"status\": \"OPENED\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/product",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListAllProducts",
+					"id": "ea2b43ab-7054-4407-b8e8-f12ebed356b6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByProductsId",
+					"id": "fc5889eb-bb7b-4bd1-a5fd-c232bb1641eb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/product?id={{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{productId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListAllProducts Copy",
+					"id": "d4062b2b-cc28-41ca-a330-ca6d8d32c7e9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/product?id={{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{productId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "0ca80394-ab12-491d-9a4a-d0057bbbef15"
+		},
+		{
+			"name": "Purchase",
+			"item": [
+				{
+					"name": "PostPurchase",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "de395977-1956-414a-b701-e776940add60",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "769af71d-4ffa-4182-91dc-35d17e1fbd95",
+								"exec": [
+									"pm.environment.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4667e3d7-e783-4df8-8d0e-1d2b2538aa38",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyName\": \"santhanam company\",\n    \"purchaseOrderNumber\": \"UGTF675F\",\n    \"address\":\"Thuraipakkam\",\n    \"paymentMode\":\"COD\",\n    \"paymentStatus\":\"done\",\n    \"type\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchase/products?orderId=63c8d6c0128164fc07333274",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchase",
+								"products"
+							],
+							"query": [
+								{
+									"key": "orderId",
+									"value": "63c8d6c0128164fc07333274"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PurchaseGet",
+					"id": "fe4eb1da-9481-4ec6-a988-141da757cf4a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchases",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchases"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPurchaseById",
+					"id": "f2f4cfb3-0e42-4228-ad67-3eeaa94d4f10",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchase?id=63e0eee0c40788bda26d1d01",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchase"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63e0eee0c40788bda26d1d01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EditPurchase",
+					"id": "36a738d9-52cd-46d9-b0f2-34065737709b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyName\": \"INNOVIX\",\n    \"purchaseOrderNumber\": \"7956OIUUIHYGFUDRFGT\",\n    \"address\": \"Chennai\",\n    \"paymentMode\": \"UPI Transaction\",\n    \"orderStatus\": null,\n    \"paymentStatus\": \"Due\",\n    \"date\": \"2023-02-14\",\n    \"grandTotal\": 8280,\n    \"totalDiscount\": \"800\",\n    \"totalTax\": \"1080\",\n    \"subTotal\": \"8000\",\n    \"id\": \"63e0eee0c40788bda26d1d01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchase?id=63e0eee0c40788bda26d1d01",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchase"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63e0eee0c40788bda26d1d01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "submitPurchase",
+					"id": "c191658e-2c44-44d1-9746-9f0027bdb113",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/purchases/added/submit/?id=63ce745e6817c27858022abb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchases",
+								"added",
+								"submit",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63ce745e6817c27858022abb"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "96fb327c-ea69-4526-949c-baa15b7eb2b9"
+		},
+		{
+			"name": "PurchasedProducts",
+			"item": [
+				{
+					"name": "PostPurchasedProducts",
+					"id": "d9cd5b99-dfe6-43c6-811b-76fb879e0c40",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"product\": \"adidas\",\n    \"price\": \"2000\",\n    \"quantity\": \"20\",\n    \"tax\": \"15\",\n    \"discount\": \"15\",\n    \"mrp\": \"2500\",\n    \"unit\": \"kg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchase/products?id=63c921595150261b1c2896d1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchase",
+								"products"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63c921595150261b1c2896d1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "361171bb-b484-4492-80bb-d34f03d1a5d0"
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "salesPost Copy",
+					"id": "07d11ce5-3a9b-4da2-94fa-da56ade39b6d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$hv11sKJmynZlk2fWdj31x.gQajGJDWY190RBM3CN5rHm8N0gEqP8a",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sales/added/submit/?id=63ecab5dda9208196d6df8a5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"added",
+								"submit",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63ecab5dda9208196d6df8a5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "salesPost",
+					"id": "b27f3e7d-3c0e-4898-a7fa-7d16e82b09ca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customer\":\"Sathish\",\n    \"saleDate\":\"\",\n    \"supplier\":\"Godrej\",\n    \"paymentMode\":\"\",\n    \"paymentStatus\":\"\",\n    \"address\":\"\",\n    \"unit\":\"\",\n    \"date\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/sale",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sale"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SalesGet",
+					"id": "0dec6d70-2362-476c-89b1-96ef246a7988",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$7bMLId6jtt3C2TzsSK/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sales",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SalesGet Copy",
+					"id": "625a0e9e-56c2-45c9-b158-96404c8a60b4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$7bMLId6jtt3C2TzsSK/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sale/?id=63ecab5dda9208196d6df8a5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sale",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63ecab5dda9208196d6df8a5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "3a41de80-8696-4592-b94a-980ab70f2f7f"
+		},
+		{
+			"name": "SalesProduct",
+			"item": [],
+			"id": "57f88040-5b8c-4370-af74-5eb289f16ef5"
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "report for purchase",
+					"id": "041e476f-4503-4837-84ec-7cabb7f2980c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$hv11sKJmynZlk2fWdj31x.gQajGJDWY190RBM3CN5rHm8N0gEqP8a",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/purchase/report/?id=63e0eee0c40788bda26d1d01",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"purchase",
+								"report",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63e0eee0c40788bda26d1d01"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "report for sales",
+					"id": "8be27b0f-3886-42a1-9bc9-09b3e7a60e37",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/sale/report?id=63ecab5dda9208196d6df8a5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sale",
+								"report"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63ecab5dda9208196d6df8a5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CustomerReport",
+					"id": "647d458e-3d2e-4185-9784-88a959e17a15",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/customer/report?id=63dcb07a23ecd6fc850bf96e&from=01/01/200&to=01/01/3000",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"customer",
+								"report"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63dcb07a23ecd6fc850bf96e"
+								},
+								{
+									"key": "from",
+									"value": "01/01/200",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "01/01/3000",
+									"type": "text"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "5927463e-77a5-4843-bbbf-a5588916e437"
+		},
+		{
+			"name": "Vendors",
+			"item": [
+				{
+					"name": "PostVendors",
+					"id": "9efb3e69-c623-42e7-8226-3aa5e9796ada",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"vendorName\": \"santhanam\",\n  \"companyName\": \"santhanam company\",\n  \"vendorAddress\":\"Covai\",\n  \"vendorEmail\": \"santhanam@gmail.com\",\n  \"vendorContactNumber\": 4897987946546,\n  \"website\": \"www.santhanam.com\",\n  \"GSTIN\": \"GD654IU2328357C623F\",\n  \"contactPersonName\": \"Vijay Sethupathi\",\n  \"emailAddress\": \"sethu@yahoo.com\",\n  \"workContactNumber\":\"2554984984\",\n  \"personalContactNumber\": \"45862141682\",\n  \"designation\":\"---text----\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/vendor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vendor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetVendors",
+					"id": "fe189fb3-fd5a-434a-aff4-2c35c3e1a183",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/vendors",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetVendors Copy",
+					"id": "6afd6462-6a7c-49df-bc98-87673f0de6c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": [\n        {\n            \"product\": \"samsung watch\",\n            \"price\": 1200,\n            \"quantity\": 2,\n            \"discount\": \"\",\n            \"total\": \"\"\n        },\n        {\n            \"product\": \"apple watch\",\n            \"price\": 1200,\n            \"quantity\": 2,\n            \"discount\": \"\",\n            \"total\": \"\"\n        }\n    ],\n    \"subtotal\": \"\",\n    \"tax\": \"\",\n    \"grantTotal\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/vendors",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"vendors"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "130e0c3f-5406-4163-9658-d166b2f40615"
+		},
+		{
+			"name": "Sales Invoice",
+			"item": [],
+			"id": "ad0e26a3-aa85-42da-9426-3531089f5d77"
+		},
+		{
+			"name": "Purchase Invoice",
+			"item": [
+				{
+					"name": "InvoceForInward Copy",
+					"id": "2d366ac0-b207-4bed-a7d3-f6f50338aed0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/sales/added/submit/?id=63cfa99dbbafd0c0a8e481f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"added",
+								"submit",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63cfa99dbbafd0c0a8e481f8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InvoceForInward Copy 2",
+					"id": "bd803530-22e1-4cf0-aa97-5a31de429005",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/sales/added/submit/?id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sales",
+								"added",
+								"submit",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						},
+						"description": "rtetqe"
+					},
+					"response": []
+				},
+				{
+					"name": "InvoceForInward",
+					"id": "92c249f9-81a3-4713-ab62-cfc45c269497",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/inward/invoice?id=63ce7b67ef267224e7340f98",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"inward",
+								"invoice"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "63ce7b67ef267224e7340f98"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "8034ffe9-0011-41d5-a73b-09218e1dfd03",
+							"name": "InvoceForInward",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+										"type": "default"
+									}
+								],
+								"url": {
+									"raw": "http://192.168.0.123:8080/api/inward/invoice?id=63ce7b67ef267224e7340f98",
+									"protocol": "http",
+									"host": [
+										"192",
+										"168",
+										"0",
+										"123"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"inward",
+										"invoice"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "63ce7b67ef267224e7340f98"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1110"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"456-9XJb5RWOthbjPFgLplJ332CwrjA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 24 Jan 2023 06:47:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"date\": \"2023-01-24T06:47:05.080Z\",\n        \"createdAt\": \"1674542825080\",\n        \"_id\": \"63ce7b67ef267224e7340f98\",\n        \"companyName\": \"63c918fc95ce3ae1e4b47708\",\n        \"purchaseOrderNumber\": \"god123\",\n        \"address\": \"god\",\n        \"paymentMode\": \"god\",\n        \"paymentStatus\": \"god\",\n        \"completed\": true,\n        \"grandTotal\": 120102,\n        \"totalDiscount\": \"12013\",\n        \"totalTax\": \"12015\"\n    },\n    \"productsDetails\": [\n        {\n            \"_id\": \"63ce7b79ef267224e7340fa3\",\n            \"po\": \"63ce7b67ef267224e7340f98\",\n            \"purchaseOrderNumber\": \"god123\",\n            \"quantity\": 12,\n            \"mrp\": 12000,\n            \"price\": 10000,\n            \"discount\": 10,\n            \"unit\": \"kg\",\n            \"tax\": 10,\n            \"products\": {\n                \"_id\": \"63ca20eb0cc2440214671407\",\n                \"productName\": \"apple watch\",\n                \"category\": \"63b7acee703e6a3e387aad89\",\n                \"brand\": \"63b7adaee46cc1ab11a4d772\",\n                \"sku\": \"\",\n                \"description\": \"\",\n                \"status\": \"Open\",\n                \"uniqueId\": \"V1674191083467\"\n            }\n        },\n        {\n            \"_id\": \"63ce7b8bef267224e7340fac\",\n            \"po\": \"63ce7b67ef267224e7340f98\",\n            \"purchaseOrderNumber\": \"god123\",\n            \"quantity\": 1,\n            \"mrp\": 70000,\n            \"price\": 100,\n            \"discount\": 13,\n            \"unit\": \"kg\",\n            \"tax\": 15,\n            \"products\": {\n                \"_id\": \"63bebba25f88ac1980c025b5\",\n                \"productName\": \"sanproduct\",\n                \"category\": \"63b7acee703e6a3e387aad89\",\n                \"brand\": \"63b7adaee46cc1ab11a4d772\",\n                \"sku\": \"adad\",\n                \"description\": \"hello, have a nice day.\",\n                \"status\": \"Open\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"id": "24786d37-3ef2-4d35-a35d-1e13f3af8f84"
+		}
+	]
+}
