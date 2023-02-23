@@ -40,7 +40,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"username\": \"Admin\",\n    \"password\": \"1234\"\n}",
@@ -68,7 +72,11 @@
 							"name": "login",
 							"originalRequest": {
 								"method": "POST",
-								"header": [],
+								"header": [{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}],
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"username\": \"Admin\",\n    \"password\": \"1234\"\n}",
@@ -140,7 +148,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "default"
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"username\": \"Admin\",\n    \"password\": \"1234\",\n    \"role\": \"Admin\"\n}",
@@ -178,13 +190,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/brands",
 							"host": [
@@ -206,13 +216,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/brand?id={{brandid}}",
 							"host": [
@@ -240,13 +248,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"brandName\": \"Aditas\",\n    \"brandImage\": \"src/j/edited\",\n    \"brandDescription\": \"USA product\"\n}",
@@ -295,13 +301,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"brandName\": \"Samsung\",\n    \"brandImage\": \"src/j/sd\",\n    \"brandDescription\": \"USA product\"\n}",
@@ -338,13 +342,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/categories",
 							"host": [
@@ -366,13 +368,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/category?id={{categoryId}}",
 							"host": [
@@ -400,13 +400,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"categoryName\":\"Watch\",\n    \"categoryCode\":\"W765JBH\",\n    \"categoryDescription\":\"Something about Watch\"\n}",
@@ -437,13 +435,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"categoryName\":\"Metals\"\n}",
@@ -486,13 +482,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/customers",
 							"host": [
@@ -514,13 +508,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/customer?id={{customersId}}",
 							"host": [
@@ -548,13 +540,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"_id\": \"63dcb73123ecd6fc850bfbcb\",\n    \"name\": \"Sarojini S\",\n    \"email\": \"sarojinisivalingam916@gmail.com\",\n    \"phone\": 9962393295,\n    \"type\": \"Individual\",\n    \"GSTno\": \"\",\n    \"address\": \"No. 11 B Metha Nagar 11th street jai nagar kundrathur chennai - 600069\",\n    \"postedBy\": \"63dbab953edec81cf092e790\"\n}",
@@ -591,13 +581,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\",\n    \"address\":\"chennai\"\n}",
@@ -637,8 +625,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
+								"value": "{{token}}": "text"
 							}
 						],
 						"url": {
@@ -668,13 +655,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/manufacturers",
 							"host": [
@@ -696,13 +681,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/manufacturer?id={{manufacturerId}}",
 							"host": [
@@ -730,13 +713,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\n    \"location\": \"Kancheepuram, chennai -- 600023\"\n}",
@@ -773,13 +754,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"companyName\":\"Samsung\",\n    \"location\":\"USA\",\n    \"phone\":45634567567869,\n    \"email\":\"sg@info.com\",\n    \"website\":\"www.sg.com\",\n    \"establishment\":\"1777\",\n    \"brand\":\"63bbba2c0931f31b49d9d6d0\"\n}",
@@ -816,13 +795,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"productName\": \"Testing triggers15\",\n    \"category\": \"Watch\",\n    \"brand\": \"Samsung\",\n    \"sku\": \"20001\",\n    \"description\": \"Smart Watch\",\n    \"status\": \"OPENED\"\n}",
@@ -853,13 +830,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/products",
 							"host": [
@@ -881,13 +856,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/product?id={{productId}}",
 							"host": [
@@ -915,13 +888,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"productName\": \"Samsung-\"\n}",
@@ -986,13 +957,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"companyName\": \"santhanam company\",\n    \"purchaseOrderNumber\": \"UGTF675F\",\n    \"address\":\"Thuraipakkam\",\n    \"paymentMode\":\"COD\",\n    \"paymentStatus\":\"done\",\n    \"type\":\"\"\n}",
@@ -1030,13 +999,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\"\n}",
@@ -1067,13 +1034,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"name\":\"Sathish\",\n    \"type\":\"Personal\",\n    \"email\":\"sri@info.com\",\n    \"phone\":\"87643354354\"\n}",
@@ -1110,13 +1075,11 @@
 					},
 					"request": {
 						"method": "PATCH",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"companyName\": \"INNOVIX\",\n    \"purchaseOrderNumber\": \"7956OIUUIHYGFUDRFGT\",\n    \"address\": \"Chennai\",\n    \"paymentMode\": \"UPI Transaction\",\n    \"orderStatus\": null,\n    \"paymentStatus\": \"Due\",\n    \"date\": \"2023-02-14\",\n    \"grandTotal\": 8280,\n    \"totalDiscount\": \"800\",\n    \"totalTax\": \"1080\",\n    \"subTotal\": \"8000\",\n    \"id\": \"63e0eee0c40788bda26d1d01\"\n}",
@@ -1153,13 +1116,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/purchases/added/submit/?id=63ce745e6817c27858022abb",
 							"host": [
@@ -1196,13 +1157,11 @@
 					},
 					"request": {
 						"method": "POST",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n    \"product\": \"adidas\",\n    \"price\": \"2000\",\n    \"quantity\": \"20\",\n    \"tax\": \"15\",\n    \"discount\": \"15\",\n    \"mrp\": \"2500\",\n    \"unit\": \"kg\"\n}",
@@ -1249,7 +1208,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$hv11sKJmynZlk2fWdj31x.gQajGJDWY190RBM3CN5rHm8N0gEqP8a",
+								"value": "{{token}}.gQajGJDWY190RBM3CN5rHm8N0gEqP8a",
 								"type": "default"
 							}
 						],
@@ -1286,7 +1245,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"value": "{{token}}",
 								"type": "default"
 							}
 						],
@@ -1323,7 +1282,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$7bMLId6jtt3C2TzsSK/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
+								"value": "{{token}}/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
 								"type": "default"
 							}
 						],
@@ -1351,7 +1310,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$7bMLId6jtt3C2TzsSK/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
+								"value": "{{token}}/gkesyNabvpH2TgFLmEElyzYi2MxsWix.q2",
 								"type": "default"
 							}
 						],
@@ -1397,7 +1356,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"value": "{{token}}",
 								"type": "default"
 							}
 						],
@@ -1434,7 +1393,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"value": "{{token}}",
 								"type": "default"
 							}
 						],
@@ -1462,7 +1421,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "$2b$10$zy5HeMed0qq8zwEdJA76OutyfkxpreouXLhAiaYPPQndCXi3Y9Z3K",
+								"value": "{{token}}",
 								"type": "default"
 							}
 						],
@@ -1505,8 +1464,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{token}}",
-								"type": "text"
+								"value": "{{token}}": "text"
 							}
 						],
 						"url": {
@@ -1543,13 +1501,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1593,13 +1549,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1638,13 +1592,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1682,13 +1634,11 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
+						"header": [{
 								"key": "Authorization",
 								"value": "{{token}}",
 								"type": "default"
-							}
-						],
+							}],
 						"url": {
 							"raw": "{{url}}/api/customer/report?id=63dcb07a23ecd6fc850bf96e&from=01/01/200&to=01/01/3000",
 							"host": [
